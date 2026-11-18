@@ -10,7 +10,7 @@ export const GET: APIRoute = () =>
 	new Response(
 		[
 			'User-agent: *',
-			'Content-Signal: search=yes, ai-input=yes, ai-train=yes',
+			'Content-Signal: search=yes, ai-input=yes, ai-train=no',
 			'Allow: /',
 			'',
 			`Sitemap: ${SITE}/sitemap-index.xml`,

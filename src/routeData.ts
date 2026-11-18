@@ -1,5 +1,5 @@
 import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
-import { SITE, pageId, localeOf, htmlPath, mdPath, isoDate } from './lib/site.mjs';
+import { SITE, LABELS, pageId, localeOf, htmlPath, mdPath, isoDate } from './lib/site.mjs';
 
 /** Adds the Markdown alternate link and JSON-LD to every page's <head>. */
 export const onRequest = defineRouteMiddleware((context) => {
@@ -19,7 +19,7 @@ export const onRequest = defineRouteMiddleware((context) => {
 	route.head.push({
 		tag: 'style',
 		attrs: {},
-		content: `:root{--status-page:"${mdPath(id)}";--status-verified:"${isoDate(data.lastVerified)}"}`,
+		content: `:root{--status-page:"${mdPath(id)}";--status-verified:"  │  ${LABELS[localeOf(id).lang].verified} ${isoDate(data.lastVerified)}"}`,
 	});
 
 	const jsonLd = {

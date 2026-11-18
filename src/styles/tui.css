@@ -92,7 +92,8 @@
 		padding-bottom: var(--status-height);
 	}
 	body::after {
-		content: ' NORMAL  │  ' var(--status-page, '') '  │  verified ' var(--status-verified, '') '  │  utf-8';
+		/* The 404 page sets neither variable: it shows "404" and no date. */
+		content: ' NORMAL  │  ' var(--status-page, '404') var(--status-verified, '') '  │  utf-8';
 		position: fixed;
 		inset: auto 0 0 0;
 		z-index: var(--sl-z-index-navbar);
@@ -104,9 +105,6 @@
 		font-size: var(--sl-text-xs);
 		line-height: var(--status-height);
 		white-space: pre;
-	}
-	html[lang='zh-TW'] body::after {
-		content: ' NORMAL  │  ' var(--status-page, '') '  │  查證 ' var(--status-verified, '') '  │  utf-8';
 	}
 	.sidebar-pane,
 	.right-sidebar {

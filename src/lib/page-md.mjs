@@ -10,6 +10,7 @@ import {
 	htmlPath,
 	mdPath,
 	mdPathFromHtmlPath,
+	llmsPath,
 	isoDate,
 } from './site.mjs';
 
@@ -44,7 +45,7 @@ export function pageHeader(entry, allIds) {
 			facts.push(`- ${t.otherLanguage}: [${other.label}](${SITE}${mdPath(otherId)})`);
 		}
 	}
-	facts.push(`- ${t.allPages}: <${SITE}/llms.txt>`);
+	facts.push(`- ${t.allPages}: <${SITE}${llmsPath(locale)}>`);
 	facts.push(`- ${t.sources}:`);
 	for (const s of data.sources) facts.push(`  - [${s.title}](${s.url})`);
 	return [`# ${data.title}`, `> ${data.description}`, facts.join('\n')].join('\n\n');

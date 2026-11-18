@@ -46,7 +46,7 @@ export default defineConfig({
 				},
 			},
 			plugins: [
-				starlightLinksValidator({ exclude: ['/**/*.md', '/*.md', '/llms.txt', '/index.json'] }),
+				starlightLinksValidator({ exclude: ['/**/*.md', '/*.md', '/llms.txt', '/**/llms.txt', '/index.json'] }),
 			],
 		}),
 	],

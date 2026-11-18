@@ -12,6 +12,9 @@
 //  6. Language parity: both languages have the same pages, dates, sources and code.
 //  7. Bundles: each language's llms-full.txt and llms-small.txt carry every page's
 //     answer and caveat; a hidden pointer to the Markdown twin survives extraction.
+//  8. llms.txt: notes, bundles and other languages within the first 5,000 characters.
+//  9. The 404 page links each language's home page and page list.
+// 10. robots.txt names the sitemap and carries a Content-Signal line.
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -19,7 +22,7 @@ import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 import { Readability } from '@mozilla/readability';
 import TurndownService from 'turndown';
-import { SITE, LOCALES, localeOf, idInLocale, htmlPath, mdPath } from '../src/lib/site.mjs';
+import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llmsPath } from '../src/lib/site.mjs';
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 
@@ -48,7 +51,8 @@ if (!existsSync(DIST)) {
 
 const pages = readPages();
 const ids = new Set(pages.map((p) => p.id));
-const llmsTxt = read('llms.txt');
+/** Each language's llms.txt, by locale. */
+const llmsTxt = new Map(LOCALES.map((l) => [l, read(llmsPath(l).slice(1))]));
 const indexJson = JSON.parse(read('index.json'));
 const turndown = new TurndownService({ headingStyle: 'atx', codeBlockStyle: 'fenced' });
 
@@ -89,7 +93,7 @@ for (const { id, data } of pages) {
 	const alternate = doc.querySelector('link[rel="alternate"][type="text/markdown"]');
 	if (alternate?.getAttribute('href') !== SITE + mdPath(id)) fail(id, 'missing or wrong <link rel="alternate" type="text/markdown">');
 	if (!doc.querySelector(`main a[href="${mdPath(id)}"]`)) fail(id, 'no visible link to the Markdown twin inside <main>');
-	if (!llmsTxt.includes(SITE + mdPath(id))) fail(id, 'Markdown twin not listed in llms.txt');
+	if (!llmsTxt.get(localeOf(id)).includes(SITE + mdPath(id))) fail(id, `Markdown twin not listed in ${llmsPath(localeOf(id))}`);
 	if (!indexJson.pages.some((p) => p.markdown === SITE + mdPath(id))) fail(id, 'page not listed in index.json');
 	if (!doc.querySelector('script[type="application/ld+json"]')) fail(id, 'missing JSON-LD');
 
@@ -99,10 +103,9 @@ for (const { id, data } of pages) {
 		for (const text of [data.description, data.caveat]) {
 			if (!bundle.includes(normalize(String(text)))) fail(id, `answer or caveat missing from ${bundlePath(localeOf(id), set)}`);
 		}
-		if (!llmsTxt.includes(SITE + bundlePath(localeOf(id), set))) fail(id, `${bundlePath(localeOf(id), set)} not listed in llms.txt`);
-	}
+			}
 	const note = doc.querySelector('main .agent-note');
-	if (!note?.textContent.includes(SITE + mdPath(id))) fail(id, 'missing hidden pointer to the Markdown twin');
+	if (!note?.textContent.includes(SITE + mdPath(id)) || !note.textContent.includes(SITE + llmsPath(localeOf(id)))) fail(id, 'missing hidden pointer to the Markdown twin and the page list');
 	if (note && (note.hasAttribute('hidden') || note.getAttribute('aria-hidden') === 'true' || note.getAttribute('style'))) {
 		fail(id, 'the pointer for agents must be hidden by CSS class only, or extractors drop it');
 	}
@@ -208,6 +211,40 @@ for (const { id, data } of pages) {
 		if (headings(md).length !== headings(otherMd).length) fail(id, `number of headings differs from ${otherId}`);
 	}
 }
+
+// 8. llms.txt: what an agent must know before it answers, the bundles and the other
+// languages all come within the first 5,000 characters, ahead of the page list.
+for (const locale of LOCALES) {
+	const name = llmsPath(locale);
+	const head = llmsTxt.get(locale).slice(0, LIMIT);
+	for (const note of LLMS_NOTES[locale.lang].notes) {
+		if (!head.includes(note)) fail(name, `a note is not within the first ${LIMIT} characters`);
+	}
+	const links = [
+		...['full', 'small'].map((set) => bundlePath(locale, set)),
+		'/index.json',
+		...LOCALES.filter((other) => other !== locale).map(llmsPath),
+	];
+	for (const link of links) {
+		if (!head.includes(`${SITE}${link}`)) fail(name, `link to ${link} is not within the first ${LIMIT} characters`);
+	}
+	const listed = pages.filter((p) => localeOf(p.id) === locale);
+	const beyond = listed.filter((p) => !head.includes(SITE + mdPath(p.id))).length;
+	if (beyond) console.warn(`note: ${name} lists ${beyond} of ${listed.length} pages beyond its first ${LIMIT} characters`);
+}
+
+// 9. A wrong URL is not a dead end: the 404 page links each language's home and page list.
+const notFound = new JSDOM(read('404.html')).window.document;
+for (const locale of LOCALES) {
+	for (const href of [locale.dir ? `/${locale.dir}/` : '/', llmsPath(locale)]) {
+		if (!notFound.querySelector(`main a[href="${href}"]`)) fail('404.html', `no link to ${href}`);
+	}
+}
+
+// 10. robots.txt names the sitemap and states how the content may be used.
+const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
+if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
+if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
 
 if (failures.length) {
 	console.error(`FAIL: ${failures.filter((f) => !f.startsWith('    ')).length} problem(s) in ${pages.length} pages\n`);

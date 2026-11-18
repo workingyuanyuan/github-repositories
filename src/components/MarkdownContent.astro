@@ -5,19 +5,20 @@
 // The same frontmatter fields also produce the Markdown twin (src/lib/page-md.mjs)
 // and the JSON-LD (src/routeData.ts).
 import '@astrojs/starlight/style/markdown.css';
-import { SITE, LABELS, pageId, localeOf, mdPath, isoDate } from '../lib/site.mjs';
+import { SITE, LABELS, LOCALES, pageId, localeOf, mdPath, llmsPath, isoDate } from '../lib/site.mjs';
 
 const { data } = Astro.locals.starlightRoute.entry;
 const id = pageId(Astro.locals.starlightRoute.entry.id);
 const t = LABELS[localeOf(id).lang];
-// Starlight's built-in 404 page has no contract fields; it gets the title only.
+// Starlight's built-in 404 page has no contract fields. It gets links to each
+// language's home page and page list instead, so a wrong URL is not a dead end.
 const hasFacts = Boolean(data.lastVerified && data.sources);
 // A pointer for agents that read the HTML. It is hidden from sighted readers with a
 // CSS class (not `hidden` or `aria-hidden`, which extractors treat as "drop this").
 const zh = localeOf(id).lang === 'zh-TW';
 const agentNote = zh
-	? `本頁的 Markdown 版本：${SITE}${mdPath(id)} 。所有頁面的清單：${SITE}/llms.txt （Markdown）、${SITE}/index.json （JSON）。`
-	: `Markdown version of this page: ${SITE}${mdPath(id)} . List of all pages: ${SITE}/llms.txt (Markdown), ${SITE}/index.json (JSON).`;
+	? `本頁的 Markdown 版本：${SITE}${mdPath(id)} 。所有頁面的清單：${SITE}${llmsPath(localeOf(id))} （Markdown）、${SITE}/index.json （JSON）。`
+	: `Markdown version of this page: ${SITE}${mdPath(id)} . List of all pages: ${SITE}${llmsPath(localeOf(id))} (Markdown), ${SITE}/index.json (JSON).`;
 ---
 
 <div class="sl-markdown-content">
@@ -61,6 +62,16 @@ const agentNote = zh
 	<dd><a href={mdPath(id)}>{mdPath(id)}</a></dd>
 </dl>
 </div>}
+{!hasFacts && <div class="not-content not-found">
+<p>Page paths are lower-case: <code>/repos/kage/</code>, not <code>/repos/Kage/</code>. 頁面路徑一律小寫。</p>
+<ul>
+	{LOCALES.map((locale) => (
+		<li lang={locale.lang}>
+			{locale.label}: <a href={locale.dir ? `/${locale.dir}/` : '/'}>{locale.lang === 'zh-TW' ? '首頁' : 'Home'}</a>, <a href={llmsPath(locale)}>{locale.lang === 'zh-TW' ? '所有頁面清單' : 'list of all pages'}</a>
+		</li>
+	))}
+</ul>
+</div>}
 <slot />
 </div>
 
@@ -74,6 +85,10 @@ const agentNote = zh
 		overflow: hidden;
 		clip-path: inset(50%);
 		white-space: nowrap;
+	}
+	.not-found {
+		margin-top: 1.5rem;
+		font-size: var(--sl-text-sm);
 	}
 	.answer {
 		margin-top: 0;

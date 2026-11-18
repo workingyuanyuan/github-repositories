@@ -21,7 +21,7 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 - State only facts you verified against the repository. Link sources to a fixed commit, not to a branch.
 - Use `patch` fences for diffs, never `diff`: Starlight draws `diff` markers with CSS, so an agent reading the HTML loses the `+` and `-`.
 - Commands in code blocks carry no `$` prompt.
-- A page says what its subject is. Do not write text addressed to agents into visible content (no "for agents", no "how to read this site"). Guidance for agents lives in `/llms.txt` and in the pointer that `MarkdownContent.astro` hides from sighted readers.
+- A page says what its subject is. Do not write text addressed to agents into visible content (no "for agents", no "how to read this site"). Guidance for agents lives in each language's `llms.txt` (its opening notes are `LLMS_NOTES` in `src/lib/site.mjs`) and in the pointer that `MarkdownContent.astro` hides from sighted readers.
 - When a README gives a prompt in Chinese, keep it in Chinese inside the code block in both languages, and explain its meaning in the English page's prose.
 - Do not publish personal contact details such as email addresses, even when a README lists them.
 
@@ -32,6 +32,7 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 - Only two Starlight components are overridden: `SiteTitle` and `MarkdownContent`. Prefer CSS in `src/styles/tui.css` over another override.
 - The box under the title carries no label, so it does not repeat the body's "Facts" heading.
 - The answer and facts block must stay inside the article container (`MarkdownContent.astro`). Readability-style extractors drop them anywhere else.
+- The same component adds the links on the 404 page. GitHub Pages serves one `404.html` for every language, so they are bilingual.
 
 ## Where things are
 
@@ -41,7 +42,8 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 | `src/lib/page-md.mjs` | Builds each page's Markdown twin |
 | `src/pages/[...slug].md.ts` | Serves the Markdown twins (`/repos/kage/` -> `/repos/kage.md`) |
 | `src/pages/index.json.ts` | Machine-readable page list |
-| `src/lib/llms.mjs`, `src/pages/llms.txt.ts`, `src/pages/[...dir]/llms-[set].txt.ts` | `/llms.txt` and the full and digest bundles for each language |
+| `src/lib/llms.mjs`, `src/pages/[...dir]/llms.txt.ts`, `src/pages/[...dir]/llms-[set].txt.ts` | `llms.txt` and the full and digest bundles for each language (`/` and `/zh-tw/`) |
+| `src/pages/robots.txt.ts` | `robots.txt`: sitemap and content signals, served for the whole domain |
 | `src/lib/content-index.mjs` | Reads page frontmatter from disk for the check script |
 | `src/routeData.ts` | Markdown alternate link and JSON-LD in `<head>` |
 | `scripts/check-dist.mjs` | Acceptance checks |

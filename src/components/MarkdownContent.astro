@@ -1,7 +1,8 @@
 ---
-// Override of Starlight's MarkdownContent: the one-sentence answer and the facts
-// block, placed in the same container as the page body. Extractors that keep only
-// the main article (Readability and the like) would drop them anywhere else.
+// Override of Starlight's MarkdownContent: the one-sentence answer above the page body
+// and the page notes (scope, caveat, dates, sources) after it, all in the same
+// container as the body. Extractors that keep only the main article (Readability and
+// the like) would drop them anywhere else.
 // The same frontmatter fields also produce the Markdown twin (src/lib/page-md.mjs)
 // and the JSON-LD (src/routeData.ts).
 import '@astrojs/starlight/style/markdown.css';
@@ -13,19 +14,38 @@ const t = LABELS[localeOf(id).lang];
 // Starlight's built-in 404 page has no contract fields. It gets links to each
 // language's home page and page list instead, so a wrong URL is not a dead end.
 const hasFacts = Boolean(data.lastVerified && data.sources);
-// A pointer for agents that read the HTML. It is hidden from sighted readers with a
-// CSS class (not `hidden` or `aria-hidden`, which extractors treat as "drop this").
+// A note for agents that read the HTML: scope and caveat, which sighted readers find in
+// the page notes after the body, and where the Markdown is. It is hidden with a CSS
+// class (not `hidden` or `aria-hidden`, which extractors treat as "drop this").
 const zh = localeOf(id).lang === 'zh-TW';
-const agentNote = zh
-	? `本頁的 Markdown 版本：${SITE}${mdPath(id)} 。所有頁面的清單：${SITE}${llmsPath(localeOf(id))} （Markdown）、${SITE}/index.json （JSON）。`
-	: `Markdown version of this page: ${SITE}${mdPath(id)} . List of all pages: ${SITE}${llmsPath(localeOf(id))} (Markdown), ${SITE}/index.json (JSON).`;
+const agentNote = hasFacts
+	? zh
+		? `${t.appliesTo}：${data.appliesTo}。${t.caveat}：${data.caveat} Markdown：${SITE}${mdPath(id)} 。所有頁面：${SITE}${llmsPath(localeOf(id))} 、${SITE}/index.json 。`
+		: `${t.appliesTo}: ${data.appliesTo}. ${t.caveat}: ${data.caveat} Markdown: ${SITE}${mdPath(id)} . All pages: ${SITE}${llmsPath(localeOf(id))} , ${SITE}/index.json .`
+	: '';
 ---
 
 <div class="sl-markdown-content">
-{hasFacts && <div class="not-content page-facts">
-<p class="agent-note">{agentNote}</p>
-<p class="answer">{data.description}</p>
-<dl class="facts">
+{/* No wrapper around the note, the answer and the page notes: as direct children of
+     the article container they make it the element a readability-style extractor
+     keeps, together with the body. */}
+{hasFacts && <>
+<p class="not-content agent-note">{agentNote}</p>
+<p class="not-content answer">{data.description}</p>
+</>}
+{!hasFacts && <div class="not-content not-found">
+<p>Page paths are lower-case: <code>/repos/kage/</code>, not <code>/repos/Kage/</code>. 頁面路徑一律小寫。</p>
+<ul>
+	{LOCALES.map((locale) => (
+		<li lang={locale.lang}>
+			{locale.label}: <a href={locale.dir ? `/${locale.dir}/` : '/'}>{locale.lang === 'zh-TW' ? '首頁' : 'Home'}</a>, <a href={llmsPath(locale)}>{locale.lang === 'zh-TW' ? '所有頁面清單' : 'list of all pages'}</a>
+		</li>
+	))}
+</ul>
+</div>}
+<slot />
+{/* Page notes after the body. */}
+{hasFacts && <dl class="not-content facts">
 	<dt>{t.appliesTo}</dt>
 	<dd>{data.appliesTo}</dd>
 	<dt>{t.caveat}</dt>
@@ -60,19 +80,7 @@ const agentNote = zh
 	</dd>
 	<dt>{t.markdown}</dt>
 	<dd><a href={mdPath(id)}>{mdPath(id)}</a></dd>
-</dl>
-</div>}
-{!hasFacts && <div class="not-content not-found">
-<p>Page paths are lower-case: <code>/repos/kage/</code>, not <code>/repos/Kage/</code>. 頁面路徑一律小寫。</p>
-<ul>
-	{LOCALES.map((locale) => (
-		<li lang={locale.lang}>
-			{locale.label}: <a href={locale.dir ? `/${locale.dir}/` : '/'}>{locale.lang === 'zh-TW' ? '首頁' : 'Home'}</a>, <a href={llmsPath(locale)}>{locale.lang === 'zh-TW' ? '所有頁面清單' : 'list of all pages'}</a>
-		</li>
-	))}
-</ul>
-</div>}
-<slot />
+</dl>}
 </div>
 
 <style>
@@ -108,8 +116,8 @@ const agentNote = zh
 		display: grid;
 		grid-template-columns: minmax(6.5rem, max-content) 1fr;
 		gap: 0.35rem 1.25rem;
-		margin-top: 1.75rem;
-		margin-bottom: 2.5rem;
+		margin-top: 3.5rem;
+		margin-bottom: 0.5rem;
 		padding: 0.9rem 1rem;
 		border: 1px solid var(--sl-color-gray-5);
 		font-size: var(--sl-text-sm);

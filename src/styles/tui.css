@@ -39,7 +39,6 @@
 	--sl-line-height: 1.7;
 	--sl-content-width: 52rem;
 	--sl-sidebar-width: 17rem;
-	--status-height: 1.6rem;
 }
 
 :root[data-theme='light'],
@@ -85,30 +84,16 @@
 	color: var(--sl-color-black);
 }
 
-/* Status line at the bottom of the window: this page's Markdown path and the date
-   its facts were verified (set per page in src/routeData.ts). Drawn with CSS only. */
-@media (min-width: 50rem) {
-	body {
-		padding-bottom: var(--status-height);
+/* Wide windows: the table of contents keeps the width of the left sidebar and the text
+   column sits in the middle of the space between the two. Starlight's default gives the
+   table of contents all the spare width and pushes the text column against it. */
+@media (min-width: 72rem) {
+	.right-sidebar-container {
+		width: var(--sl-sidebar-width);
 	}
-	body::after {
-		/* The 404 page sets neither variable: it shows "404" and no date. */
-		content: ' NORMAL  │  ' var(--status-page, '404') var(--status-verified, '') '  │  utf-8';
-		position: fixed;
-		inset: auto 0 0 0;
-		z-index: var(--sl-z-index-navbar);
-		height: var(--status-height);
-		padding-inline: 0.75rem;
-		overflow: hidden;
-		background: var(--sl-color-accent);
-		color: var(--sl-color-black);
-		font-size: var(--sl-text-xs);
-		line-height: var(--status-height);
-		white-space: pre;
-	}
-	.sidebar-pane,
-	.right-sidebar {
-		padding-bottom: var(--status-height);
+	[data-has-sidebar][data-has-toc] .main-pane {
+		--sl-content-margin-inline: auto;
+		width: calc(100% - var(--sl-sidebar-width));
 	}
 }
 

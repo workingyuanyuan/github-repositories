@@ -114,7 +114,6 @@ export const LABELS = {
 		page: 'Page',
 		otherLanguage: 'Other language',
 		allPages: 'All pages',
-		verified: 'verified',
 	},
 	'zh-TW': {
 		appliesTo: '適用範圍',
@@ -127,7 +126,6 @@ export const LABELS = {
 		page: '頁面',
 		otherLanguage: '其他語言',
 		allPages: '所有頁面',
-		verified: '查證',
 	},
 };
 

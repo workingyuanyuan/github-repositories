@@ -27,11 +27,12 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 
 ## Skin rules
 
-- Decorative characters (`#`, `>`, `[K]`, `~/`, the status line) are drawn with CSS `content`. Never write them into page text.
-- The status line shows the page's Markdown path and verification date, passed as CSS variables from `src/routeData.ts`.
-- Only two Starlight components are overridden: `SiteTitle` and `MarkdownContent`. Prefer CSS in `src/styles/tui.css` over another override.
-- The box under the title carries no label, so it does not repeat the body's "Facts" heading.
-- The answer and facts block must stay inside the article container (`MarkdownContent.astro`). Readability-style extractors drop them anywhere else.
+- Decorative characters (`#`, `>`, `[K]`, `~/`) are drawn with CSS `content`. Never write them into page text.
+- No status line at the bottom of the window (owner's decision).
+- Three Starlight components are overridden: `SiteTitle`, `MarkdownContent` and `ThemeSelect` (three buttons, so each theme is one click away; it keeps Starlight's storage key `starlight-theme`). Prefer CSS in `src/styles/tui.css` over another override.
+- The first screen shows content: the answer sits under the title, and the page notes (scope, caveat, dates, repository, sources) come after the body. A visually hidden note at the top repeats scope and caveat so that they fall within the first 5,000 extracted characters.
+- The hidden note, the answer and the page notes are direct children of the article container (`MarkdownContent.astro`), with no wrapper. Readability-style extractors drop them anywhere else, and a wrapper made one keep the notes and drop the body.
+- Wide windows: the table of contents keeps the sidebar's width and the text column sits in the middle of the space between the two ("Wide windows" block in `tui.css`).
 - The same component adds the links on the 404 page. GitHub Pages serves one `404.html` for every language, so they are bilingual.
 
 ## Where things are

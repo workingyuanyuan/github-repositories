@@ -14,6 +14,8 @@ export const GET: APIRoute = () =>
 			'Allow: /',
 			'',
 			`Sitemap: ${SITE}/sitemap-index.xml`,
+			// Project sites under this domain; crawlers read only this robots.txt.
+			`Sitemap: ${SITE}/nte-wiki/sitemap-index.xml`,
 			'',
 		].join('\n'),
 		{ headers: { 'Content-Type': 'text/plain; charset=utf-8' } }

@@ -1,5 +1,5 @@
 import { defineRouteMiddleware } from '@astrojs/starlight/route-data';
-import { SITE, LABELS, pageId, localeOf, htmlPath, mdPath, isoDate } from './lib/site.mjs';
+import { SITE, pageId, localeOf, htmlPath, mdPath, isoDate } from './lib/site.mjs';
 
 /** Adds the Markdown alternate link and JSON-LD to every page's <head>. */
 export const onRequest = defineRouteMiddleware((context) => {
@@ -13,13 +13,6 @@ export const onRequest = defineRouteMiddleware((context) => {
 		tag: 'link',
 		attrs: { rel: 'alternate', type: 'text/markdown', href: SITE + mdPath(id) },
 		content: '',
-	});
-
-	// The status line is drawn by CSS; these variables give it this page's values.
-	route.head.push({
-		tag: 'style',
-		attrs: {},
-		content: `:root{--status-page:"${mdPath(id)}";--status-verified:"  │  ${LABELS[localeOf(id).lang].verified} ${isoDate(data.lastVerified)}"}`,
 	});
 
 	const jsonLd = {

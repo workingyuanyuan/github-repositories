@@ -26,9 +26,11 @@ export default defineConfig({
 			],
 			customCss: ['./src/styles/tui.css'],
 			components: {
-				// Only two overrides: the nav hints in the header, and the facts block above the body.
+				// Three overrides: the nav hints in the header, the answer and page notes around
+				// the body, and one-click theme buttons.
 				SiteTitle: './src/components/SiteTitle.astro',
 				MarkdownContent: './src/components/MarkdownContent.astro',
+				ThemeSelect: './src/components/ThemeSelect.astro',
 			},
 			routeMiddleware: './src/routeData.ts',
 			credits: false,

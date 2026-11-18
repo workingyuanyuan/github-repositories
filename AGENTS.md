@@ -1,0 +1,51 @@
+# Rules for agents maintaining this site
+
+This site documents the public GitHub repositories of `workingyuanyuan`. Its first readers are AI agents; humans come second. Markdown source is the only content source, and the HTML is a skin over it.
+
+## Commands
+
+```
+pnpm verify      # build, then run the acceptance checks. Run this before you call a change done.
+pnpm build       # build only
+pnpm check       # acceptance checks on an existing dist/
+pnpm preview     # serve dist/ at http://127.0.0.1:4399 with the same Content-Type headers as GitHub Pages
+astro dev --background   # dev server; manage with `astro dev stop|status|logs`
+```
+
+## Content rules
+
+- Pages live in `src/content/docs/` (English) and `src/content/docs/zh-tw/` (Traditional Chinese). Every page exists in both languages with the same facts, dates, sources and code blocks.
+- Pages are plain `.md`. No MDX, no components, no `:::` directives. An exception needs an explicit Markdown output and a test in `scripts/check-dist.mjs`.
+- Required frontmatter, enforced by `src/content.config.ts`: `title`, `description` (one short sentence saying what the subject is: at most 110 characters in English, 70 in Chinese; details belong in the body), `appliesTo`, `caveat`, `lastVerified`, `sources`. Optional: `effectiveDate` (date of the commit or release the facts were read from), `repo`.
+- The answer, scope and caveat must appear within the first 5,000 characters. There is no limit on total page length.
+- State only facts you verified against the repository. Link sources to a fixed commit, not to a branch.
+- Use `patch` fences for diffs, never `diff`: Starlight draws `diff` markers with CSS, so an agent reading the HTML loses the `+` and `-`.
+- Commands in code blocks carry no `$` prompt.
+- A page says what its subject is. Do not write text addressed to agents into visible content (no "for agents", no "how to read this site"). Guidance for agents lives in `/llms.txt` and in the pointer that `MarkdownContent.astro` hides from sighted readers.
+- When a README gives a prompt in Chinese, keep it in Chinese inside the code block in both languages, and explain its meaning in the English page's prose.
+- Do not publish personal contact details such as email addresses, even when a README lists them.
+
+## Skin rules
+
+- Decorative characters (`#`, `>`, `[K]`, `~/`, the status line) are drawn with CSS `content`. Never write them into page text.
+- The status line shows the page's Markdown path and verification date, passed as CSS variables from `src/routeData.ts`.
+- Only two Starlight components are overridden: `SiteTitle` and `MarkdownContent`. Prefer CSS in `src/styles/tui.css` over another override.
+- The box under the title carries no label, so it does not repeat the body's "Facts" heading.
+- The answer and facts block must stay inside the article container (`MarkdownContent.astro`). Readability-style extractors drop them anywhere else.
+
+## Where things are
+
+| Path | Role |
+| --- | --- |
+| `src/lib/site.mjs` | Site URL, locales, URL rules for HTML pages and Markdown twins |
+| `src/lib/page-md.mjs` | Builds each page's Markdown twin |
+| `src/pages/[...slug].md.ts` | Serves the Markdown twins (`/repos/kage/` -> `/repos/kage.md`) |
+| `src/pages/index.json.ts` | Machine-readable page list |
+| `src/lib/llms.mjs`, `src/pages/llms.txt.ts`, `src/pages/[...dir]/llms-[set].txt.ts` | `/llms.txt` and the full and digest bundles for each language |
+| `src/lib/content-index.mjs` | Reads page frontmatter from disk for the check script |
+| `src/routeData.ts` | Markdown alternate link and JSON-LD in `<head>` |
+| `scripts/check-dist.mjs` | Acceptance checks |
+| `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
+| `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |
+
+Astro documentation: https://docs.astro.build. Starlight documentation: https://starlight.astro.build.

@@ -11,6 +11,14 @@ export default defineConfig({
 		starlight({
 			title: 'workingyuanyuan',
 			description: DESCRIPTION,
+			// Google Search Console ownership of the domain (URL-prefix property). Keep it:
+			// removing it unverifies the property. Bing imports its access from Search Console.
+			head: [
+				{
+					tag: 'meta',
+					attrs: { name: 'google-site-verification', content: 'HAmujzQWC-r7ONB0_ef91o4cFOUJXnQKzi0t5F8uxR4' },
+				},
+			],
 			defaultLocale: 'root',
 			locales: {
 				root: { label: 'English', lang: 'en' },

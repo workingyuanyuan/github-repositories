@@ -48,6 +48,7 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 | `src/lib/content-index.mjs` | Reads page frontmatter from disk for the check script |
 | `src/routeData.ts` | Markdown alternate link and JSON-LD in `<head>` |
 | `scripts/check-dist.mjs` | Acceptance checks |
+| `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
 | `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |
 

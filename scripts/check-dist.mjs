@@ -15,6 +15,7 @@
 //  8. llms.txt: notes, bundles and other languages within the first 5,000 characters.
 //  9. The 404 page links each language's home page and page list.
 // 10. robots.txt names the sitemap and carries a Content-Signal line.
+// 11. The IndexNow key file at the domain root holds the key that scripts/indexnow.mjs sends.
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -244,6 +245,14 @@ for (const locale of LOCALES) {
 const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
+
+// 11. IndexNow key file: `<key>.txt` containing the key. At the domain root it covers the
+// project sites too, so only this site serves it.
+const indexnowKey = readFileSync('scripts/indexnow.mjs', 'utf8').match(/INDEXNOW_KEY = '([0-9a-f]{32})'/)?.[1];
+const keyFile = `${indexnowKey}.txt`;
+if (!indexnowKey || !existsSync(join(DIST, keyFile)) || read(keyFile).trim() !== indexnowKey) {
+	fail(keyFile, 'IndexNow key file missing or does not hold the key in scripts/indexnow.mjs');
+}
 
 if (failures.length) {
 	console.error(`FAIL: ${failures.filter((f) => !f.startsWith('    ')).length} problem(s) in ${pages.length} pages\n`);

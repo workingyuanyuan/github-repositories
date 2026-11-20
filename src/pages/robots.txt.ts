@@ -16,6 +16,7 @@ export const GET: APIRoute = () =>
 			`Sitemap: ${SITE}/sitemap-index.xml`,
 			// Project sites under this domain; crawlers read only this robots.txt.
 			`Sitemap: ${SITE}/nte-wiki/sitemap-index.xml`,
+			`Sitemap: ${SITE}/stitch-zh/sitemap-index.xml`,
 			`Sitemap: ${SITE}/Kage/sitemap.xml`,
 			`Sitemap: ${SITE}/Frontier-Model-Doh-Choo-choo/sitemap.xml`,
 			`Sitemap: ${SITE}/iphone-18-pro-teardown/sitemap.xml`,

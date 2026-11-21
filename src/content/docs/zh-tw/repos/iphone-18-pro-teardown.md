@@ -16,7 +16,7 @@ sources:
 | 欄位 | 內容 |
 | --- | --- |
 | 類型 | 以 Vite、TypeScript 與 three.js 建置的靜態網頁應用程式 |
-| 線上網站 | <https://workingyuanyuan.github.io/iphone-18-pro-teardown/> |
+| 線上網站 | <https://yuanaruru.com/iphone-18-pro-teardown/> |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
 | 內容來源 | WekiHome 拆解影片，<https://youtu.be/BLKegH19KGI>，日期 2026-09-20 |
 | 可拆卸零件 | 18 個，依拆解順序編號 |

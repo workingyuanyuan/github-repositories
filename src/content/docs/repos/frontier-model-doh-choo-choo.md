@@ -16,7 +16,7 @@ sources:
 | Field | Value |
 | --- | --- |
 | Kind | Benchmark dashboard, short name FM-DCC. A Next.js static front end in a Turborepo and pnpm workspace |
-| Live dashboard | <https://workingyuanyuan.github.io/Frontier-Model-Doh-Choo-choo/> |
+| Live dashboard | <https://yuanaruru.com/Frontier-Model-Doh-Choo-choo/> |
 | License | No LICENSE file. GitHub detects no license |
 | Requires | Node.js 24.0.0 or newer, pnpm 11.0.0 or newer |
 | Dimensions scored | Five: reasoning, knowledge, code, agents, language. Models are compared separately per reasoning effort |

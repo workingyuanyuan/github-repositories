@@ -18,8 +18,8 @@ sources:
 | Field | Value |
 | --- | --- |
 | Kind | Static landing page and privacy policy for a browser extension |
-| Landing page | <https://workingyuanyuan.github.io/BiliGemi-public/> |
-| Privacy policy | <https://workingyuanyuan.github.io/BiliGemi-public/privacy.html>, effective July 12, 2026 |
+| Landing page | <https://yuanaruru.com/BiliGemi-public/> |
+| Privacy policy | <https://yuanaruru.com/BiliGemi-public/privacy.html>, effective July 12, 2026 |
 | Chrome Web Store listing, linked from the landing page | <https://chromewebstore.google.com/detail/biligemi-bilibili-x-gemin/npfkimhhdikledlpjfmpkaadhkpbhogk> |
 | License | No LICENSE file. GitHub detects no license |
 | Files | `README.md`, `index.html`, `privacy.html`, and images under `assets/` |

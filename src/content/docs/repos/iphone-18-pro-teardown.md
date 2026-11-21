@@ -16,7 +16,7 @@ sources:
 | Field | Value |
 | --- | --- |
 | Kind | Static web app built with Vite, TypeScript and three.js |
-| Live site | <https://workingyuanyuan.github.io/iphone-18-pro-teardown/> |
+| Live site | <https://yuanaruru.com/iphone-18-pro-teardown/> |
 | License | No LICENSE file. GitHub detects no license |
 | Content source | WekiHome teardown video, <https://youtu.be/BLKegH19KGI>, dated 2026-09-20 |
 | Removable parts | 18, numbered in teardown order |

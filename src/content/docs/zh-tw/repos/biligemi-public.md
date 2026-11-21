@@ -18,8 +18,8 @@ sources:
 | 欄位 | 內容 |
 | --- | --- |
 | 類型 | 瀏覽器擴充功能的靜態落地頁與隱私權政策 |
-| 落地頁 | <https://workingyuanyuan.github.io/BiliGemi-public/> |
-| 隱私權政策 | <https://workingyuanyuan.github.io/BiliGemi-public/privacy.html>，生效日 2026 年 7 月 12 日 |
+| 落地頁 | <https://yuanaruru.com/BiliGemi-public/> |
+| 隱私權政策 | <https://yuanaruru.com/BiliGemi-public/privacy.html>，生效日 2026 年 7 月 12 日 |
 | Chrome Web Store 頁面（落地頁有連結） | <https://chromewebstore.google.com/detail/biligemi-bilibili-x-gemin/npfkimhhdikledlpjfmpkaadhkpbhogk> |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
 | 檔案 | `README.md`、`index.html`、`privacy.html`，以及 `assets/` 底下的圖片 |

@@ -26,7 +26,7 @@ sources:
 | Document types | 8: `one-pager`, `long-doc`, `letter`, `portfolio`, `changelog`, `equity-report`, `slides`, `landing-page` |
 | Languages | Traditional Chinese (`assets/templates/<type>.html`) and English (`assets/templates/<type>-en.html`), 16 templates in total |
 | Releases | None |
-| Demo | <https://workingyuanyuan.github.io/Kage/index-en.html> |
+| Demo | <https://yuanaruru.com/Kage/index-en.html> |
 
 ## Install
 

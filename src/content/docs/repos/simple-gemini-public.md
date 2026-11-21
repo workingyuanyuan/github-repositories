@@ -20,7 +20,7 @@ sources:
 | Field | Value |
 | --- | --- |
 | Kind | Static landing page, privacy policy and ZIP packages for a Chrome extension |
-| Landing page | <https://workingyuanyuan.github.io/simple-gemini-public/> |
+| Landing page | <https://yuanaruru.com/simple-gemini-public/> |
 | Chrome Web Store listing, linked from the landing page | <https://chromewebstore.google.com/detail/simple-gemini/benhcoldeacnhmabbkcbolmlmoiegnfi> |
 | Packages in `downloads/` | `simple-gemini-0.1.0.zip`, `simple-gemini-0.1.1.zip` |
 | GitHub release | v0.1.0, published 2026-07-06, asset `simple-gemini-0.1.0.zip` |
@@ -50,7 +50,7 @@ Open the listing linked from the landing page and add the extension to Chrome.
 Direct link to the package:
 
 ```text
-https://workingyuanyuan.github.io/simple-gemini-public/downloads/simple-gemini-0.1.1.zip
+https://yuanaruru.com/simple-gemini-public/downloads/simple-gemini-0.1.1.zip
 ```
 
 ## Privacy policy

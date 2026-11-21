@@ -2,7 +2,7 @@
 // the check script all use the same rules.
 
 // SITE_URL overrides the public address for local agent tests (see tests/agent-eval/README.md).
-export const SITE = (process.env.SITE_URL ?? 'https://workingyuanyuan.github.io').replace(/\/+$/, '');
+export const SITE = (process.env.SITE_URL ?? 'https://yuanaruru.com').replace(/\/+$/, '');
 export const GITHUB_USER = 'workingyuanyuan';
 export const DESCRIPTION =
 	'Reference pages for the public GitHub repositories of workingyuanyuan: what each repository is, how to install and use it, and what to watch out for.';

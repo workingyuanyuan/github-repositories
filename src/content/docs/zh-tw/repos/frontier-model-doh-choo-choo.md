@@ -16,7 +16,7 @@ sources:
 | 欄位 | 內容 |
 | --- | --- |
 | 類型 | 評測儀表板，簡稱 FM-DCC。位於 Turborepo 與 pnpm workspace 中的 Next.js 靜態前端 |
-| 線上儀表板 | <https://workingyuanyuan.github.io/Frontier-Model-Doh-Choo-choo/> |
+| 線上儀表板 | <https://yuanaruru.com/Frontier-Model-Doh-Choo-choo/> |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
 | 需求 | Node.js 24.0.0 以上、pnpm 11.0.0 以上 |
 | 評分維度 | 五項：reasoning、knowledge、code、agents、language。模型會依 reasoning effort 分開比較 |

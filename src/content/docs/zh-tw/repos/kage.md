@@ -26,7 +26,7 @@ sources:
 | 文件類型 | 8 種：`one-pager`、`long-doc`、`letter`、`portfolio`、`changelog`、`equity-report`、`slides`、`landing-page` |
 | 語言 | 繁體中文（`assets/templates/<type>.html`）與英文（`assets/templates/<type>-en.html`），共 16 個模板 |
 | 發行版 | 無 |
-| 展示頁 | <https://workingyuanyuan.github.io/Kage/index-en.html> |
+| 展示頁 | <https://yuanaruru.com/Kage/index-en.html> |
 
 ## 安裝
 

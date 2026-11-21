@@ -20,7 +20,7 @@ sources:
 | 欄位 | 內容 |
 | --- | --- |
 | 類型 | Chrome 擴充功能的靜態落地頁、隱私權政策與 ZIP 套件 |
-| 落地頁 | <https://workingyuanyuan.github.io/simple-gemini-public/> |
+| 落地頁 | <https://yuanaruru.com/simple-gemini-public/> |
 | Chrome Web Store 頁面（落地頁有連結） | <https://chromewebstore.google.com/detail/simple-gemini/benhcoldeacnhmabbkcbolmlmoiegnfi> |
 | `downloads/` 中的套件 | `simple-gemini-0.1.0.zip`、`simple-gemini-0.1.1.zip` |
 | GitHub 發行版 | v0.1.0，發布於 2026-07-06，附帶檔案 `simple-gemini-0.1.0.zip` |
@@ -50,7 +50,7 @@ sources:
 套件直接連結：
 
 ```text
-https://workingyuanyuan.github.io/simple-gemini-public/downloads/simple-gemini-0.1.1.zip
+https://yuanaruru.com/simple-gemini-public/downloads/simple-gemini-0.1.1.zip
 ```
 
 ## 隱私權政策

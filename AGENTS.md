@@ -44,10 +44,13 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 | `src/pages/[...slug].md.ts` | Serves the Markdown twins (`/repos/kage/` -> `/repos/kage.md`) |
 | `src/pages/index.json.ts` | Machine-readable page list |
 | `src/lib/llms.mjs`, `src/pages/[...dir]/llms.txt.ts`, `src/pages/[...dir]/llms-[set].txt.ts` | `llms.txt` and the full and digest bundles for each language (`/` and `/zh-tw/`) |
-| `src/pages/robots.txt.ts` | `robots.txt`: sitemap and content signals, served for the whole domain |
+| `src/pages/robots.txt.ts` | `robots.txt`, served for the whole domain: content signals, crawlers by name (`CRAWLERS` in `src/lib/site.mjs`; training refused, search and user fetches allowed) and every site's sitemap |
 | `src/lib/content-index.mjs` | Reads page frontmatter from disk for the check script |
 | `src/routeData.ts` | Markdown alternate link and JSON-LD in `<head>` |
 | `scripts/check-dist.mjs` | Acceptance checks |
+| `src/lib/sitemap.mjs` | Sitemap options: `lastmod` of each page from `lastVerified` |
+| `scripts/check-found.mjs` | Checks called by `check-dist.mjs`: a title and description of its own for every page, canonical, `hreflang`, sitemap |
+| `tests/agent-eval/questions.json` | The site's question list: what readers ask, each with the expected answer and qualifier. The agent test and the search test draw from it |
 | `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
 | `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |

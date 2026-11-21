@@ -1,13 +1,17 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 import starlightLinksValidator from 'starlight-links-validator';
+import { sitemapOptions } from './src/lib/sitemap.mjs';
 import { SITE, GITHUB_USER, DESCRIPTION } from './src/lib/site.mjs';
 
 export default defineConfig({
 	site: SITE,
 	trailingSlash: 'always',
 	integrations: [
+		// Added here so that it takes options; Starlight then leaves its own copy out.
+		sitemap(sitemapOptions()),
 		starlight({
 			title: 'workingyuanyuan',
 			description: DESCRIPTION,

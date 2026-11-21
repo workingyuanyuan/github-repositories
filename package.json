@@ -12,6 +12,7 @@
     "verify": "astro build && node scripts/check-dist.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.7.5",
     "@astrojs/starlight": "^0.43.1",
     "astro": "^7.3.6",
     "sharp": "^0.35.3",

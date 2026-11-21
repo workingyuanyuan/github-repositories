@@ -2,10 +2,20 @@
 // the check script all use the same rules.
 
 // SITE_URL overrides the public address for local agent tests (see tests/agent-eval/README.md).
-export const SITE = process.env.SITE_URL ?? 'https://workingyuanyuan.github.io';
+export const SITE = (process.env.SITE_URL ?? 'https://workingyuanyuan.github.io').replace(/\/+$/, '');
 export const GITHUB_USER = 'workingyuanyuan';
 export const DESCRIPTION =
 	'Reference pages for the public GitHub repositories of workingyuanyuan: what each repository is, how to install and use it, and what to watch out for.';
+
+/**
+ * Crawlers named in robots.txt, from each operator's documentation (sources and the date
+ * they were read are in ../STACK.md). `allow`: builds a search index or fetches a page for
+ * a user. `disallow`: gathers training data.
+ */
+export const CRAWLERS = {
+	allow: ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User'],
+	disallow: ['GPTBot', 'ClaudeBot'],
+};
 
 /** Locales: `dir` is the content sub-folder and URL prefix ('' = root). */
 export const LOCALES = [

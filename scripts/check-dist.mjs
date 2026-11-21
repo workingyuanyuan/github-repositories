@@ -16,6 +16,7 @@
 //  9. The 404 page links each language's home page and page list.
 // 10. robots.txt names the sitemap and carries a Content-Signal line.
 // 11. The IndexNow key file at the domain root holds the key that scripts/indexnow.mjs sends.
+// Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -23,9 +24,10 @@ import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 import { Readability } from '@mozilla/readability';
 import TurndownService from 'turndown';
-import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llmsPath } from '../src/lib/site.mjs';
+import { SITE, LOCALES, LLMS_NOTES, CRAWLERS, localeOf, idInLocale, htmlPath, mdPath, llmsPath } from '../src/lib/site.mjs';
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
+import { checkFound } from './check-found.mjs';
 
 const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
 const LIMIT = 5000;
@@ -245,6 +247,35 @@ for (const locale of LOCALES) {
 const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
+// Crawlers by name. A crawler follows the rules of every group that names it (names
+// compare without case), so collect them all. A group is a run of User-agent lines and
+// the rules after it; comments and blank lines do not end the run.
+const rulesFor = new Map();
+let naming = false; // true while reading the User-agent lines that open a group
+let current = [];
+for (const raw of robots.split('\n')) {
+	const line = raw.replace(/#.*/, '').trim();
+	if (!line) continue;
+	const agent = /^User-agent:\s*(\S+)/i.exec(line)?.[1].toLowerCase();
+	if (agent) {
+		if (!naming) current = [];
+		current.push(agent);
+		naming = true;
+	} else {
+		for (const name of current) rulesFor.set(name, [...(rulesFor.get(name) ?? []), line]);
+		naming = false;
+	}
+}
+for (const [names, refused] of [[CRAWLERS.allow, false], [CRAWLERS.disallow, true]]) {
+	for (const name of names) {
+		const rules = rulesFor.get(name.toLowerCase());
+		const disallows = (rules ?? []).filter((r) => /^Disallow:\s*\S/i.test(r));
+		const allows = (rules ?? []).filter((r) => /^Allow:\s*\S/i.test(r));
+		if (!rules) fail('robots.txt', `${name} is not named`);
+		else if (refused && !(disallows.some((r) => /^Disallow:\s*\/$/i.test(r)) && !allows.length)) fail('robots.txt', `${name} gathers training data and is not refused everything`);
+		else if (!refused && disallows.length) fail('robots.txt', `${name} is a search or user crawler and is disallowed`);
+	}
+}
 
 // 11. IndexNow key file: `<key>.txt` containing the key. At the domain root it covers the
 // project sites too, so only this site serves it.
@@ -253,6 +284,8 @@ const keyFile = `${indexnowKey}.txt`;
 if (!indexnowKey || !existsSync(join(DIST, keyFile)) || read(keyFile).trim() !== indexnowKey) {
 	fail(keyFile, 'IndexNow key file missing or does not hold the key in scripts/indexnow.mjs');
 }
+
+checkFound(DIST, pages, fail);
 
 if (failures.length) {
 	console.error(`FAIL: ${failures.filter((f) => !f.startsWith('    ')).length} problem(s) in ${pages.length} pages\n`);

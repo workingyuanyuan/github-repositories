@@ -36,7 +36,7 @@ export function llmsIndex(entries, locale) {
 	];
 	return (
 		[
-			'# workingyuanyuan',
+			'# yuanaruru',
 			`> ${t.summary}`,
 			`## ${t.heading}\n\n${t.notes.map((n) => `- ${n}`).join('\n')}`,
 			`## ${t.more}\n\n${more.join('\n')}`,

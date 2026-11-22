@@ -1,5 +1,5 @@
 ---
-title: Public repositories of workingyuanyuan
+title: Public repositories of yuanaruru
 description: The 21 public repositories of the GitHub account workingyuanyuan.
 appliesTo: Public, non-fork repositories of the GitHub account workingyuanyuan
 caveat: The 3 public forks on the account are not covered. Each linked page states the commit and date its facts were read from, and repositories change after that date.

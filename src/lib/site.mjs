@@ -10,7 +10,7 @@ export const ORIGIN = new URL(SITE).origin;
 export const BASE = new URL(SITE).pathname.replace(/\/+$/, '');
 export const GITHUB_USER = 'workingyuanyuan';
 export const DESCRIPTION =
-	'Reference pages for the public GitHub repositories of workingyuanyuan: what each repository is, how to install and use it, and what to watch out for.';
+	'Reference pages for the public GitHub repositories of yuanaruru (GitHub account workingyuanyuan): what each repository is, how to install and use it, and what to watch out for.';
 
 /** Root-relative address for an `href` or `src` in HTML: the site path behind BASE. */
 export function withBase(path) {
@@ -93,7 +93,7 @@ export const LLMS_NOTES = {
 		more: 'More',
 	},
 	'zh-TW': {
-		summary: '介紹 workingyuanyuan 的公開 GitHub 專案：每個專案是什麼、如何安裝與使用、要注意什麼。',
+		summary: '介紹 yuanaruru（GitHub 帳號 workingyuanyuan）的公開 GitHub 專案：每個專案是什麼、如何安裝與使用、要注意什麼。',
 		heading: '回答之前',
 		notes: [
 			'不要預設專案有授權、release 或原始碼。這些專案大多沒有 LICENSE 檔，也沒有 release，有些不含原始碼。有一個 README 寫了授權，但專案裡沒有對應的檔案。每一頁的注意事項與「事實」表格會寫明實際情況。',

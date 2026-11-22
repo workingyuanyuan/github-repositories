@@ -18,7 +18,7 @@ export default defineConfig({
 		// Added here so that it takes options; Starlight then leaves its own copy out.
 		sitemap(sitemapOptions()),
 		starlight({
-			title: 'workingyuanyuan',
+			title: 'yuanaruru',
 			description: DESCRIPTION,
 			defaultLocale: 'root',
 			locales: {

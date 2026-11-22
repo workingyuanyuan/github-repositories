@@ -197,7 +197,7 @@ for (const { id, data } of pages) {
 	for (const [name, pattern] of [
 		['bracketed key hint', /\[[A-Z]\]\s?[A-Za-z]/],
 		['heading mark', /(^|\s)#{1,3} (Facts|事實)/],
-		['site title prefix', /~\/workingyuanyuan/],
+		['site title prefix', /~\/yuanaruru/],
 	]) {
 		if (pattern.test(visible)) fail(id, `decoration leaked into page text: ${name}`);
 	}

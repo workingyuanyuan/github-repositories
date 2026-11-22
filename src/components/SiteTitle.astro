@@ -2,17 +2,17 @@
 // Override of Starlight's SiteTitle: the site name plus a row of keyboard-hint links.
 // The bracketed key hints are drawn by CSS (`[data-key]::before`), so they never
 // reach the text an agent extracts from the page.
-import { pageId, localeOf, mdPath, llmsPath } from '../lib/site.mjs';
+import { pageId, localeOf, mdPath, llmsPath, withBase } from '../lib/site.mjs';
 
 const { siteTitle, siteTitleHref, entry } = Astro.locals.starlightRoute;
 const zh = localeOf(entry.id).lang === 'zh-TW';
 const links = [
 	{ key: 'H', label: zh ? '首頁' : 'Home', href: siteTitleHref },
 	...(entry.data.lastVerified
-		? [{ key: 'M', label: 'Markdown', href: mdPath(pageId(entry.id)) }]
+		? [{ key: 'M', label: 'Markdown', href: withBase(mdPath(pageId(entry.id))) }]
 		: []),
-	{ key: 'L', label: 'llms.txt', href: llmsPath(localeOf(entry.id)) },
-	{ key: 'J', label: 'index.json', href: '/index.json' },
+	{ key: 'L', label: 'llms.txt', href: withBase(llmsPath(localeOf(entry.id))) },
+	{ key: 'J', label: 'index.json', href: withBase('/index.json') },
 ];
 ---
 

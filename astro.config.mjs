@@ -4,25 +4,22 @@ import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
 import starlightLinksValidator from 'starlight-links-validator';
 import { sitemapOptions } from './src/lib/sitemap.mjs';
-import { SITE, GITHUB_USER, DESCRIPTION } from './src/lib/site.mjs';
+import { ORIGIN, BASE, GITHUB_USER, DESCRIPTION } from './src/lib/site.mjs';
+import { satteri } from '@astrojs/markdown-satteri';
+import { hastBase } from './src/lib/hast-base.mjs';
 
 export default defineConfig({
-	site: SITE,
+	site: ORIGIN,
+	base: BASE || undefined,
 	trailingSlash: 'always',
+	// Content links are written without the sub-path; this adds it in the HTML.
+	markdown: { processor: satteri({ hastPlugins: [hastBase] }) },
 	integrations: [
 		// Added here so that it takes options; Starlight then leaves its own copy out.
 		sitemap(sitemapOptions()),
 		starlight({
 			title: 'workingyuanyuan',
 			description: DESCRIPTION,
-			// Google Search Console ownership of the domain (URL-prefix property). Keep it:
-			// removing it unverifies the property. Bing imports its access from Search Console.
-			head: [
-				{
-					tag: 'meta',
-					attrs: { name: 'google-site-verification', content: 'HAmujzQWC-r7ONB0_ef91o4cFOUJXnQKzi0t5F8uxR4' },
-				},
-			],
 			defaultLocale: 'root',
 			locales: {
 				root: { label: 'English', lang: 'en' },

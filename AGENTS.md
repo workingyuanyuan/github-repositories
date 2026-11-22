@@ -1,6 +1,12 @@
 # Rules for agents maintaining this site
 
-This site documents the public GitHub repositories of `workingyuanyuan`. Its first readers are AI agents; humans come second. Markdown source is the only content source, and the HTML is a skin over it.
+This site documents the public GitHub repositories of `workingyuanyuan`. It is served at `https://yuanaruru.com/github-repositories/` from the repository `github-repositories`. Its first readers are AI agents; humans come second. Markdown source is the only content source, and the HTML is a skin over it.
+
+## Decisions
+
+- 2026-11-22, owner: the site moved from the domain root to `/github-repositories/`, unchanged, and the root became the owner's index of sites (`workingyuanyuan.github.io/`). Pages keep their paths below the site address (`/repos/kage/` is now `/github-repositories/repos/kage/`). The root site keeps a page at each old address that sends the reader on.
+- Content links are written without the sub-path (`/repos/kage/`). `src/lib/hast-base.mjs` adds it in the HTML and `src/lib/page-md.mjs` writes absolute URLs in the twins.
+- The domain's `robots.txt`, the IndexNow key file and the Search Console tag belong to the root site. This site's `robots.txt` only states the intent.
 
 ## Commands
 
@@ -8,7 +14,7 @@ This site documents the public GitHub repositories of `workingyuanyuan`. Its fir
 pnpm verify      # build, then run the acceptance checks. Run this before you call a change done.
 pnpm build       # build only
 pnpm check       # acceptance checks on an existing dist/
-pnpm preview     # serve dist/ at http://127.0.0.1:4399 with the same Content-Type headers as GitHub Pages
+pnpm preview     # serve dist/ at http://127.0.0.1:4399/github-repositories/ with the same Content-Type headers as GitHub Pages
 astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 ```
 
@@ -39,19 +45,20 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 
 | Path | Role |
 | --- | --- |
-| `src/lib/site.mjs` | Site URL, locales, URL rules for HTML pages and Markdown twins |
+| `src/lib/site.mjs` | Site URL and sub-path, locales, URL rules for HTML pages and Markdown twins |
+| `src/lib/hast-base.mjs` | Puts the sub-path in front of root-relative links in the HTML |
 | `src/lib/page-md.mjs` | Builds each page's Markdown twin |
 | `src/pages/[...slug].md.ts` | Serves the Markdown twins (`/repos/kage/` -> `/repos/kage.md`) |
 | `src/pages/index.json.ts` | Machine-readable page list |
 | `src/lib/llms.mjs`, `src/pages/[...dir]/llms.txt.ts`, `src/pages/[...dir]/llms-[set].txt.ts` | `llms.txt` and the full and digest bundles for each language (`/` and `/zh-tw/`) |
-| `src/pages/robots.txt.ts` | `robots.txt`, served for the whole domain: content signals, crawlers by name (`CRAWLERS` in `src/lib/site.mjs`; training refused, search and user fetches allowed) and every site's sitemap |
+| `src/pages/robots.txt.ts` | `robots.txt` of a project site: states the intent. Crawlers read only the one at the domain root, which the root site serves |
 | `src/lib/content-index.mjs` | Reads page frontmatter from disk for the check script |
 | `src/routeData.ts` | Markdown alternate link and JSON-LD in `<head>` |
 | `scripts/check-dist.mjs` | Acceptance checks |
 | `src/lib/sitemap.mjs` | Sitemap options: `lastmod` of each page from `lastVerified` |
 | `scripts/check-found.mjs` | Checks called by `check-dist.mjs`: a title and description of its own for every page, canonical, `hreflang`, sitemap |
 | `tests/agent-eval/questions.json` | The site's question list: what readers ask, each with the expected answer and qualifier. The agent test and the search test draw from it |
-| `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow |
+| `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow. The key file is at the domain root, in the root site |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
 | `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |
 

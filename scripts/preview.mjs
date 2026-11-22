@@ -3,11 +3,13 @@
 // charset, so a browser shows Chinese text in those files as garbage.
 //
 // Usage: pnpm preview [port]      (default port 4399)
+// Build with the same SITE_URL sub-path that this server is started with.
 
 import { createServer } from 'node:http';
 import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { BASE } from '../src/lib/site.mjs';
 
 const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
 const PORT = Number(process.argv[2] ?? 4399);
@@ -21,6 +23,8 @@ const TYPES = {
 	'.js': 'application/javascript; charset=utf-8',
 	'.svg': 'image/svg+xml',
 	'.png': 'image/png',
+	'.jpg': 'image/jpeg',
+	'.webp': 'image/webp',
 	'.woff2': 'font/woff2',
 };
 
@@ -35,7 +39,9 @@ async function resolve(urlPath) {
 
 createServer(async (req, res) => {
 	const { pathname } = new URL(req.url, 'http://localhost');
-	const file = await resolve(pathname);
+	// A project site lives under BASE; dist/ holds the files without that prefix.
+	const inSite = pathname === BASE || pathname.startsWith(BASE + '/');
+	const file = inSite ? await resolve(pathname.slice(BASE.length) || '/') : null;
 	const target = file ?? join(DIST, '404.html');
 	const body = await readFile(target).catch(() => Buffer.from('Not found'));
 	res.writeHead(file ? 200 : 404, {
@@ -43,5 +49,5 @@ createServer(async (req, res) => {
 	});
 	res.end(req.method === 'HEAD' ? undefined : body);
 }).listen(PORT, '127.0.0.1', () => {
-	console.log(`Preview of dist/ at http://127.0.0.1:${PORT}/`);
+	console.log(`Preview of dist/ at http://127.0.0.1:${PORT}${BASE}/`);
 });

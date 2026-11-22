@@ -14,8 +14,8 @@
 //     answer and caveat; a hidden pointer to the Markdown twin survives extraction.
 //  8. llms.txt: notes, bundles and other languages within the first 5,000 characters.
 //  9. The 404 page links each language's home page and page list.
-// 10. robots.txt names the sitemap and carries a Content-Signal line.
-// 11. The IndexNow key file at the domain root holds the key that scripts/indexnow.mjs sends.
+// 10. robots.txt names the sitemap and carries a Content-Signal line. Crawlers read only
+//     the one at the domain root, which the user site serves and checks.
 // Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -24,7 +24,7 @@ import { fileURLToPath } from 'node:url';
 import { JSDOM } from 'jsdom';
 import { Readability } from '@mozilla/readability';
 import TurndownService from 'turndown';
-import { SITE, LOCALES, LLMS_NOTES, CRAWLERS, localeOf, idInLocale, htmlPath, mdPath, llmsPath } from '../src/lib/site.mjs';
+import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llmsPath, withBase } from '../src/lib/site.mjs';
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 import { checkFound } from './check-found.mjs';
@@ -95,7 +95,7 @@ for (const { id, data } of pages) {
 	// 1. Pairing
 	const alternate = doc.querySelector('link[rel="alternate"][type="text/markdown"]');
 	if (alternate?.getAttribute('href') !== SITE + mdPath(id)) fail(id, 'missing or wrong <link rel="alternate" type="text/markdown">');
-	if (!doc.querySelector(`main a[href="${mdPath(id)}"]`)) fail(id, 'no visible link to the Markdown twin inside <main>');
+	if (!doc.querySelector(`main a[href="${withBase(mdPath(id))}"]`)) fail(id, 'no visible link to the Markdown twin inside <main>');
 	if (!llmsTxt.get(localeOf(id)).includes(SITE + mdPath(id))) fail(id, `Markdown twin not listed in ${llmsPath(localeOf(id))}`);
 	if (!indexJson.pages.some((p) => p.markdown === SITE + mdPath(id))) fail(id, 'page not listed in index.json');
 	if (!doc.querySelector('script[type="application/ld+json"]')) fail(id, 'missing JSON-LD');
@@ -238,7 +238,7 @@ for (const locale of LOCALES) {
 // 9. A wrong URL is not a dead end: the 404 page links each language's home and page list.
 const notFound = new JSDOM(read('404.html')).window.document;
 for (const locale of LOCALES) {
-	for (const href of [locale.dir ? `/${locale.dir}/` : '/', llmsPath(locale)]) {
+	for (const href of [locale.dir ? `/${locale.dir}/` : '/', llmsPath(locale)].map(withBase)) {
 		if (!notFound.querySelector(`main a[href="${href}"]`)) fail('404.html', `no link to ${href}`);
 	}
 }
@@ -247,43 +247,6 @@ for (const locale of LOCALES) {
 const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
-// Crawlers by name. A crawler follows the rules of every group that names it (names
-// compare without case), so collect them all. A group is a run of User-agent lines and
-// the rules after it; comments and blank lines do not end the run.
-const rulesFor = new Map();
-let naming = false; // true while reading the User-agent lines that open a group
-let current = [];
-for (const raw of robots.split('\n')) {
-	const line = raw.replace(/#.*/, '').trim();
-	if (!line) continue;
-	const agent = /^User-agent:\s*(\S+)/i.exec(line)?.[1].toLowerCase();
-	if (agent) {
-		if (!naming) current = [];
-		current.push(agent);
-		naming = true;
-	} else {
-		for (const name of current) rulesFor.set(name, [...(rulesFor.get(name) ?? []), line]);
-		naming = false;
-	}
-}
-for (const [names, refused] of [[CRAWLERS.allow, false], [CRAWLERS.disallow, true]]) {
-	for (const name of names) {
-		const rules = rulesFor.get(name.toLowerCase());
-		const disallows = (rules ?? []).filter((r) => /^Disallow:\s*\S/i.test(r));
-		const allows = (rules ?? []).filter((r) => /^Allow:\s*\S/i.test(r));
-		if (!rules) fail('robots.txt', `${name} is not named`);
-		else if (refused && !(disallows.some((r) => /^Disallow:\s*\/$/i.test(r)) && !allows.length)) fail('robots.txt', `${name} gathers training data and is not refused everything`);
-		else if (!refused && disallows.length) fail('robots.txt', `${name} is a search or user crawler and is disallowed`);
-	}
-}
-
-// 11. IndexNow key file: `<key>.txt` containing the key. At the domain root it covers the
-// project sites too, so only this site serves it.
-const indexnowKey = readFileSync('scripts/indexnow.mjs', 'utf8').match(/INDEXNOW_KEY = '([0-9a-f]{32})'/)?.[1];
-const keyFile = `${indexnowKey}.txt`;
-if (!indexnowKey || !existsSync(join(DIST, keyFile)) || read(keyFile).trim() !== indexnowKey) {
-	fail(keyFile, 'IndexNow key file missing or does not hold the key in scripts/indexnow.mjs');
-}
 
 checkFound(DIST, pages, fail);
 

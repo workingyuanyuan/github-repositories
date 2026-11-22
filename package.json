@@ -1,5 +1,5 @@
 {
-  "name": "workingyuanyuan.github.io",
+  "name": "github-repositories",
   "type": "module",
   "version": "0.0.1",
   "scripts": {
@@ -12,9 +12,11 @@
     "verify": "astro build && node scripts/check-dist.mjs"
   },
   "dependencies": {
+    "@astrojs/markdown-satteri": "0.4.10",
     "@astrojs/sitemap": "^3.7.5",
     "@astrojs/starlight": "^0.43.1",
     "astro": "^7.3.6",
+    "satteri": "0.11.7",
     "sharp": "^0.35.3",
     "starlight-links-validator": "^0.27.0",
     "yaml": "^2.9.1"

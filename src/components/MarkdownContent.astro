@@ -6,7 +6,7 @@
 // The same frontmatter fields also produce the Markdown twin (src/lib/page-md.mjs)
 // and the JSON-LD (src/routeData.ts).
 import '@astrojs/starlight/style/markdown.css';
-import { SITE, LABELS, LOCALES, pageId, localeOf, mdPath, llmsPath, isoDate } from '../lib/site.mjs';
+import { SITE, LABELS, LOCALES, pageId, localeOf, mdPath, llmsPath, withBase, isoDate } from '../lib/site.mjs';
 
 const { data } = Astro.locals.starlightRoute.entry;
 const id = pageId(Astro.locals.starlightRoute.entry.id);
@@ -34,11 +34,11 @@ const agentNote = hasFacts
 <p class="not-content answer">{data.description}</p>
 </>}
 {!hasFacts && <div class="not-content not-found">
-<p>Page paths are lower-case: <code>/repos/kage/</code>, not <code>/repos/Kage/</code>. 頁面路徑一律小寫。</p>
+<p>Page paths are lower-case: <code>{withBase('/repos/kage/')}</code>, not <code>{withBase('/repos/Kage/')}</code>. 頁面路徑一律小寫。</p>
 <ul>
 	{LOCALES.map((locale) => (
 		<li lang={locale.lang}>
-			{locale.label}: <a href={locale.dir ? `/${locale.dir}/` : '/'}>{locale.lang === 'zh-TW' ? '首頁' : 'Home'}</a>, <a href={llmsPath(locale)}>{locale.lang === 'zh-TW' ? '所有頁面清單' : 'list of all pages'}</a>
+			{locale.label}: <a href={withBase(locale.dir ? `/${locale.dir}/` : '/')}>{locale.lang === 'zh-TW' ? '首頁' : 'Home'}</a>, <a href={withBase(llmsPath(locale))}>{locale.lang === 'zh-TW' ? '所有頁面清單' : 'list of all pages'}</a>
 		</li>
 	))}
 </ul>
@@ -79,7 +79,7 @@ const agentNote = hasFacts
 		</ul>
 	</dd>
 	<dt>{t.markdown}</dt>
-	<dd><a href={mdPath(id)}>{mdPath(id)}</a></dd>
+	<dd><a href={withBase(mdPath(id))}>{mdPath(id)}</a></dd>
 </dl>}
 </div>
 

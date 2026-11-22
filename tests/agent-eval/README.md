@@ -15,7 +15,7 @@ Checks whether an agent with only a fetch tool answers questions about the repos
 1. Build the site with a local address and serve it:
 
 ```
-SITE_URL=http://127.0.0.1:4399 pnpm build
+SITE_URL=http://127.0.0.1:4399/github-repositories pnpm build
 pnpm preview
 ```
 
@@ -25,7 +25,7 @@ pnpm preview
 node tests/agent-eval/fetch.mjs --run <run-name> --q <question-id> <url> [start_index]
 ```
 
-Start URL for this site: `http://127.0.0.1:4399/`. Start URL for the baseline: `https://github.com/workingyuanyuan`.
+Start URL for this site: `http://127.0.0.1:4399/github-repositories/`. Start URL for the baseline: `https://github.com/workingyuanyuan`.
 
 3. Score each answer against `questions.json`: pass needs the answer and the qualifier; partial is one of the two or an unverified inference; fail is a wrong or missing answer.
 

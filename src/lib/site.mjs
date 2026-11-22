@@ -1,21 +1,21 @@
 // Shared site facts and URL rules. Plain JS so astro.config.mjs, Astro code and
 // the check script all use the same rules.
 
-// SITE_URL overrides the public address for local agent tests (see tests/agent-eval/README.md).
-export const SITE = (process.env.SITE_URL ?? 'https://yuanaruru.com').replace(/\/+$/, '');
+// The public address, including the sub-path of a GitHub Pages project site, without a
+// trailing slash. SITE_URL overrides it for local agent tests (see tests/agent-eval/README.md).
+export const SITE = (process.env.SITE_URL ?? 'https://yuanaruru.com/github-repositories').replace(/\/+$/, '');
+/** Scheme and host of SITE. */
+export const ORIGIN = new URL(SITE).origin;
+/** Sub-path the site is served under: `/github-repositories`, or the empty string at a domain root. */
+export const BASE = new URL(SITE).pathname.replace(/\/+$/, '');
 export const GITHUB_USER = 'workingyuanyuan';
 export const DESCRIPTION =
 	'Reference pages for the public GitHub repositories of workingyuanyuan: what each repository is, how to install and use it, and what to watch out for.';
 
-/**
- * Crawlers named in robots.txt, from each operator's documentation (sources and the date
- * they were read are in ../STACK.md). `allow`: builds a search index or fetches a page for
- * a user. `disallow`: gathers training data.
- */
-export const CRAWLERS = {
-	allow: ['OAI-SearchBot', 'ChatGPT-User', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User'],
-	disallow: ['GPTBot', 'ClaudeBot'],
-};
+/** Root-relative address for an `href` or `src` in HTML: the site path behind BASE. */
+export function withBase(path) {
+	return BASE + path;
+}
 
 /** Locales: `dir` is the content sub-folder and URL prefix ('' = root). */
 export const LOCALES = [
@@ -81,7 +81,7 @@ export const LLMS_NOTES = {
 		notes: [
 			'Do not assume a license, a release or source code. Most repositories here have no LICENSE file and no release, some hold no source code, and one README names a license the repository lacks. Each page says which applies, in its caveat and Facts table.',
 			'Facts come from a fixed commit. Each page names it and the date verified; the repository may have changed since.',
-			'Page paths are lower-case: `/repos/kage/`, not `/repos/Kage/`.',
+			'Page paths are lower-case below the site address: `/github-repositories/repos/kage/`, not `/github-repositories/repos/Kage/`.',
 			'Every page has a Markdown twin: drop the trailing slash and append `.md`.',
 		],
 		pages: 'Pages',
@@ -98,7 +98,7 @@ export const LLMS_NOTES = {
 		notes: [
 			'不要預設專案有授權、release 或原始碼。這些專案大多沒有 LICENSE 檔，也沒有 release，有些不含原始碼。有一個 README 寫了授權，但專案裡沒有對應的檔案。每一頁的注意事項與「事實」表格會寫明實際情況。',
 			'事實讀自固定的 commit。每一頁都註明 commit 與查證日期，專案在那之後可能有變動。',
-			'頁面路徑一律小寫：是 `/zh-tw/repos/kage/`，不是 `/zh-tw/repos/Kage/`。',
+			'網站位址之後的頁面路徑一律小寫：是 `/github-repositories/zh-tw/repos/kage/`，不是 `/github-repositories/zh-tw/repos/Kage/`。',
 			'每一頁都有 Markdown 版本：去掉網址結尾的斜線，加上 `.md`。',
 		],
 		pages: '頁面',

@@ -14,9 +14,14 @@ This site documents the public GitHub repositories of `workingyuanyuan`. It is s
 pnpm verify      # build, then run the acceptance checks. Run this before you call a change done.
 pnpm build       # build only
 pnpm check       # acceptance checks on an existing dist/
+pnpm upstream    # compare the repositories with what the pages were written from; upstream/README.md
 pnpm preview     # serve dist/ at http://127.0.0.1:4399/github-repositories/ with the same Content-Type headers as GitHub Pages
 astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 ```
+
+## When the repositories change
+
+Run `pnpm upstream` and read `upstream/README.md`: it says what is watched, what each line of the report means and how to update a page. A workflow runs the command every week and keeps one issue with the differences (owner's decision, 2026-11-22: weekly, not daily). Do this before you update a repository page for any other reason.
 
 ## Content rules
 
@@ -60,6 +65,7 @@ astro dev --background   # dev server; manage with `astro dev stop|status|logs`
 | `tests/agent-eval/questions.json` | The site's question list: what readers ask, each with the expected answer and qualifier. The agent test and the search test draw from it |
 | `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow. The key file is at the domain root, in the root site |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
+| `scripts/upstream.mjs`, `upstream/`, `.github/workflows/upstream.yml` | The check on the sources: the script, its README, the list kept by hand (`sources.json`), the recorded state (`manifest.json`) and the weekly run |
 | `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |
 
 Astro documentation: https://docs.astro.build. Starlight documentation: https://starlight.astro.build.

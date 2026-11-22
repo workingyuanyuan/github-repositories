@@ -9,6 +9,7 @@
     "preview": "node scripts/preview.mjs",
     "astro": "astro",
     "check": "node scripts/check-dist.mjs",
+    "upstream": "node scripts/upstream.mjs",
     "verify": "astro build && node scripts/check-dist.mjs"
   },
   "dependencies": {

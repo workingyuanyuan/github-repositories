@@ -1,0 +1,61 @@
+{
+	"account": "workingyuanyuan",
+	"noPage": {
+		"github-repositories": "this site",
+		"workingyuanyuan.github.io": "the home page of the domain",
+		"nte-wiki": "a site under the domain",
+		"stitch-zh": "a site under the domain",
+		"tw-hs-contests": "a site under the domain",
+		"endfield-wiki": "a site under the domain"
+	},
+	"watch": {
+		"workingyuanyuan/agents.md-collections": [
+			"*/AGENTS.md"
+		],
+		"workingyuanyuan/skill.md-collections": [
+			"*/SKILL.md"
+		],
+		"workingyuanyuan/lite-agy-subagent-delegation": [
+			"*/GEMINI.md"
+		],
+		"workingyuanyuan/lite-claude-subagent-delegation": [
+			"*/CLAUDE.md"
+		],
+		"workingyuanyuan/lite-codex-subagent-delegation": [
+			"*/AGENTS.md"
+		],
+		"workingyuanyuan/antigravity-subagent-delegation": [
+			"versions/*/GEMINI.md"
+		],
+		"workingyuanyuan/codex-gemini-orchestrator": [
+			"versions/*/AGENTS.md"
+		],
+		"workingyuanyuan/BiliGemi-public": [
+			"**"
+		],
+		"workingyuanyuan/simple-gemini-public": [
+			"**"
+		],
+		"workingyuanyuan/Kage": [
+			"package.json",
+			"assets/templates/**"
+		],
+		"workingyuanyuan/tw-highschool-ai-activity-daily": [
+			"**/*.py",
+			"**/*.js",
+			"**/*.mjs",
+			"**/*.ts",
+			"**/*.sh"
+		]
+	},
+	"external": [
+		{
+			"page": "repos/obsidian-kage-theme",
+			"source": "https://github.com/obsidianmd/obsidian-releases/blob/master/community-css-themes.json",
+			"fetch": "https://raw.githubusercontent.com/obsidianmd/obsidian-releases/master/community-css-themes.json",
+			"entry": {
+				"repo": "workingyuanyuan/obsidian-kage-theme"
+			}
+		}
+	]
+}

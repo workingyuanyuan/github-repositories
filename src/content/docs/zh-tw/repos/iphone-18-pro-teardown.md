@@ -2,13 +2,13 @@
 title: iphone-18-pro-teardown
 description: 用 3D 互動一層層拆解 iPhone 18 Pro 的教育用網頁。
 repo: workingyuanyuan/iphone-18-pro-teardown
-appliesTo: main 分支的 commit a2d020f。這個專案沒有任何已標記的發行版。
+appliesTo: main 分支的 commit 172752d。這個專案沒有任何已標記的發行版。
 caveat: 專案沒有 LICENSE 檔案。規格來自 WekiHome 的單一拆解影片。3D 模型中的厚度與隱藏零件屬於推估值。
-effectiveDate: 2026-11-17
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit a2d020f
-    url: https://github.com/workingyuanyuan/iphone-18-pro-teardown/blob/a2d020fc5b41d78bb5478cf6ef43891e5774f7f6/README.md
+  - title: README.md at commit 172752d
+    url: https://github.com/workingyuanyuan/iphone-18-pro-teardown/blob/172752deaf099cd818935c9cf537abe31591745c/README.md
 ---
 
 ## 事實

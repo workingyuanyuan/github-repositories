@@ -2,15 +2,15 @@
 title: simple-gemini-public
 description: Simple Gemini（摘要選取文字的 Chrome 擴充功能）的落地頁、隱私權政策與安裝包。
 repo: workingyuanyuan/simple-gemini-public
-appliesTo: main 分支的 commit 3313457。GitHub 發行版 v0.1.0，以及 downloads 資料夾中的 0.1.1 套件。
+appliesTo: main 分支的 commit 1322d88。GitHub 發行版 v0.1.0，以及 downloads 資料夾中的 0.1.1 套件。
 caveat: 最新的套件 simple-gemini-0.1.1.zip 放在 downloads 資料夾中，並非 GitHub 發行版；唯一的 GitHub 發行版是 v0.1.0。專案內不含擴充功能原始碼，也沒有 LICENSE 檔案。
-effectiveDate: 2026-07-09
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit 3313457
-    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/33134571e261802afcdf7542dbe86a281a6c0a22/README.md
-  - title: index.html at commit 3313457
-    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/33134571e261802afcdf7542dbe86a281a6c0a22/index.html
+  - title: README.md at commit 1322d88
+    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/1322d886e0f94704ac78196dac656c484f523506/README.md
+  - title: index.html at commit 1322d88
+    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/1322d886e0f94704ac78196dac656c484f523506/index.html
   - title: Release v0.1.0
     url: https://github.com/workingyuanyuan/simple-gemini-public/releases/tag/v0.1.0
 ---

@@ -2,17 +2,17 @@
 title: lite-claude-subagent-delegation
 description: 讓 Claude Code 把工作委派給 Codex CLI、Antigravity CLI 與 Claude 子代理的 skill。
 repo: workingyuanyuan/lite-claude-subagent-delegation
-appliesTo: main 分支的 commit ff6551c，資料夾 claude-fable-5-2-opus-5-5。主代理為 Claude Fable 5.2 或 Claude Opus 5.5。
+appliesTo: main 分支的 commit 582b0ea，資料夾 claude-fable-5-2-opus-5-5。主代理為 Claude Fable 5.2 或 Claude Opus 5.5。
 caveat: 模型名單只適用於這兩種主代理。Codex CLI 與 Antigravity CLI 都必須已安裝並登入。README 只有繁體中文版。
-effectiveDate: 2026-11-18
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-19
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/README.md
-  - title: CLAUDE.md at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/claude-fable-5-2-opus-5-5/CLAUDE.md
-  - title: LICENSE at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/LICENSE
+  - title: README.md at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/README.md
+  - title: CLAUDE.md at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/claude-fable-5-2-opus-5-5/CLAUDE.md
+  - title: LICENSE at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/LICENSE
 ---
 
 ## 事實
@@ -79,14 +79,11 @@ cp -r claude-fable-5-2-opus-5-5/skills/delegate ~/.claude/skills/
 
 | 模型 | Effort | 負責的工作 |
 | --- | --- | --- |
-| Opus（透過 Agent tool） | `medium` | 要 merge、但大到會占滿主代理 context 的程式碼 |
-| Fable（透過 Agent tool，僅限主代理為 Opus 時） | `medium` | 搭建前的第三份設計意見，不接實作 |
-| `gpt-6.2-sol` | `medium` | 審查主代理寫的程式碼，以及不會 merge 的後端工作 |
-| `gpt-6.2-sol` | `high` | 大型或高風險的 diff，或 medium 未通過驗收時 |
-| `gpt-6.2-astra` | `medium` | 搭建前的設計討論與第二意見，以及根因假設 |
-| `gemini-4-argon-medium` | 寫在模型 ID 內 | 與 Astra 並行的設計意見，以及對圖片、PDF、影音做判斷 |
-| `gemini-4-hydrogen-medium` | 寫在模型 ID 內 | 多模態抽取，媒體任務的預設選擇 |
-| `gemini-4-hydrogen-high` | 寫在模型 ID 內 | 機械性的程式任務，以及 medium 做不好的抽取 |
+| Opus（透過 Agent tool） | `high` | 要 merge、但大到會占滿主代理 context 的程式碼，其餘由主代理自己寫 |
+| Fable（透過 Agent tool，僅限主代理為 Opus 時） | `medium` | 搭建前與 Astra、Neon 並行的第三份設計意見，不接實作 |
+| `gpt-6.2-sol` | `medium` | 審查主代理寫的程式碼（含大型或高風險的 diff），以及不會 merge 的後端工作 |
+| `gpt-6.2-astra` | `medium` | 搭建前的設計討論與第二意見，以及根因假設，不接實作 |
+| `gemini-4-neon-medium` | 寫在模型 ID 內 | 與 Astra 並行的設計意見，圖片、PDF、影音的抽取與判斷，以及機械性的程式任務 |
 
 ## 可預期的行為
 

@@ -1,16 +1,18 @@
 ---
 title: skill.md-collections
-description: Collection of the author's agent skills, one folder per skill. It holds one skill so far, heii.
+description: Collection of the author's agent skills, one folder per skill. It holds two, heii and 3d-textbook-lesson.
 repo: workingyuanyuan/skill.md-collections
-appliesTo: Commit b40e727 on branch main. The repository has no tagged release.
-caveat: It holds a single skill so far. The repository has no LICENSE file. The README is in Traditional Chinese only.
-effectiveDate: 2026-10-04
-lastVerified: 2026-11-18
+appliesTo: Commit 195e5f3 on branch main. The repository has no tagged release.
+caveat: The README describes the folder layout and does not list the skills. The skills are the folders at the repository root, two so far. The repository has no LICENSE file. The README is in Traditional Chinese only.
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit b40e727
-    url: https://github.com/workingyuanyuan/skill.md-collections/blob/b40e72770bb821dd6f9ba3701bd34cc6fbd38153/README.md
-  - title: heii/SKILL.md at commit b40e727
-    url: https://github.com/workingyuanyuan/skill.md-collections/blob/b40e72770bb821dd6f9ba3701bd34cc6fbd38153/heii/SKILL.md
+  - title: README.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/README.md
+  - title: heii/SKILL.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/heii/SKILL.md
+  - title: 3d-textbook-lesson/SKILL.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/3d-textbook-lesson/SKILL.md
 ---
 
 ## Facts
@@ -19,8 +21,8 @@ sources:
 | --- | --- |
 | Kind | Collection of agent skills |
 | License | No LICENSE file. GitHub detects no license |
-| Skills in the repository | 1: `heii` |
-| Files | `README.md`, `.gitignore`, `heii/SKILL.md`, `heii/agents/openai.yaml` |
+| Skills in the repository | 2: `heii` and `3d-textbook-lesson` |
+| Files | `README.md`, `.gitignore`, `heii/` (`SKILL.md`, `agents/openai.yaml`), `3d-textbook-lesson/` (`SKILL.md`, `engine/`, `examples/`) |
 | Releases | None |
 
 ## Skills
@@ -28,6 +30,7 @@ sources:
 | Skill | Description from its `SKILL.md` |
 | --- | --- |
 | `heii` | "Communicate clearly in plain language when explicitly invoked." |
+| `3d-textbook-lesson` | Written in Chinese. It turns one chapter of a textbook PDF into a 3D interactive textbook for a teacher to project in class: a static three.js web page that shows an open book whose figures rise from the page, each with a demonstration that plays by itself after one click. The engine it builds on is in the skill's `engine/` folder |
 
 ## Folder layout
 

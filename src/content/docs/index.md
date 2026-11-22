@@ -3,7 +3,7 @@ title: Public repositories of workingyuanyuan
 description: The 21 public repositories of the GitHub account workingyuanyuan.
 appliesTo: Public, non-fork repositories of the GitHub account workingyuanyuan
 caveat: The 3 public forks on the account are not covered. Each linked page states the commit and date its facts were read from, and repositories change after that date.
-lastVerified: 2026-11-18
+lastVerified: 2026-11-22
 sources:
   - title: Repository list of workingyuanyuan on GitHub
     url: https://github.com/workingyuanyuan?tab=repositories
@@ -16,7 +16,7 @@ sources:
 | [Kage](/repos/kage/) | Skill that typesets a brief into a dark, screen-only HTML document |
 | [instagram-linkedin-carousel-skill](/repos/instagram-linkedin-carousel-skill/) | Skill that turns long-form text into an Instagram or LinkedIn carousel, as PNG and PDF |
 | [Moss-TTS-for-HyperFrames](/repos/moss-tts-for-hyperframes/) | Node.js CLI and skill for narration through the Moss cloud speech API |
-| [skill.md-collections](/repos/skill-md-collections/) | Collection of the author's skills, currently one: `heii` |
+| [skill.md-collections](/repos/skill-md-collections/) | Collection of the author's skills, currently two: `heii` and `3d-textbook-lesson` |
 | [agents.md-collections](/repos/agents-md-collections/) | `AGENTS.md` files by model with design notes, currently `gpt-6-astra` |
 
 ## Delegation between agents
@@ -24,8 +24,8 @@ sources:
 | Repository | What it is |
 | --- | --- |
 | [lite-claude-subagent-delegation](/repos/lite-claude-subagent-delegation/) | Claude Code skill that delegates to Codex CLI, Antigravity CLI and Claude subagents |
-| [lite-codex-subagent-delegation](/repos/lite-codex-subagent-delegation/) | Codex skill that delegates subtasks to subagents in three fixed configurations |
-| [lite-agy-subagent-delegation](/repos/lite-agy-subagent-delegation/) | Antigravity skill with Gemini 4 Hydrogen workers and a Claude Opus 5.5 advisor |
+| [lite-codex-subagent-delegation](/repos/lite-codex-subagent-delegation/) | Codex skill that delegates subtasks to subagents, in two versions by main agent |
+| [lite-agy-subagent-delegation](/repos/lite-agy-subagent-delegation/) | Antigravity skill with Gemini 4 Neon workers and two advisor models |
 | [antigravity-subagent-delegation](/repos/antigravity-subagent-delegation/) | Antigravity skill that delegates to native subagents, Gemini Flash by default |
 | [codex-gemini-orchestrator](/repos/codex-gemini-orchestrator/) | Codex skill for Windows 11 that delegates to Gemini through the Antigravity CLI |
 

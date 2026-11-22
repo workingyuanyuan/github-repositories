@@ -2,13 +2,13 @@
 title: Frontier-Model-Doh-Choo-choo
 description: 比較前沿大語言模型能力與成本的評測看板，資料來自公開評測快照。
 repo: workingyuanyuan/Frontier-Model-Doh-Choo-choo
-appliesTo: main 分支的 commit 3c19776。這個專案沒有任何已標記的發行版。
+appliesTo: main 分支的 commit 64aed53。這個專案沒有任何已標記的發行版。
 caveat: 專案沒有 LICENSE 檔案。評測分數版權屬於原發布方。儀表板顯示的是建置當下的資料版本，而非即時資料。
-effectiveDate: 2026-11-18
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-22
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit 3c19776
-    url: https://github.com/workingyuanyuan/Frontier-Model-Doh-Choo-choo/blob/3c19776e7ed72446f0d82104fa7a4c5167039363/README.md
+  - title: README.md at commit 64aed53
+    url: https://github.com/workingyuanyuan/Frontier-Model-Doh-Choo-choo/blob/64aed5313118caca35aea01f015b133a4104d061/README.md
 ---
 
 ## 事實

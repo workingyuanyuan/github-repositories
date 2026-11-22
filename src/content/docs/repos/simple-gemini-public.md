@@ -2,15 +2,15 @@
 title: simple-gemini-public
 description: Landing page, privacy policy and packages of Simple Gemini, a Chrome extension that summarises selected text.
 repo: workingyuanyuan/simple-gemini-public
-appliesTo: Commit 3313457 on branch main. GitHub release v0.1.0, and package 0.1.1 in the downloads folder.
+appliesTo: Commit 1322d88 on branch main. GitHub release v0.1.0, and package 0.1.1 in the downloads folder.
 caveat: The newest package, simple-gemini-0.1.1.zip, is in the downloads folder and is not a GitHub release. The only GitHub release is v0.1.0. The repository holds no extension source code and has no LICENSE file.
-effectiveDate: 2026-07-09
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit 3313457
-    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/33134571e261802afcdf7542dbe86a281a6c0a22/README.md
-  - title: index.html at commit 3313457
-    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/33134571e261802afcdf7542dbe86a281a6c0a22/index.html
+  - title: README.md at commit 1322d88
+    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/1322d886e0f94704ac78196dac656c484f523506/README.md
+  - title: index.html at commit 1322d88
+    url: https://github.com/workingyuanyuan/simple-gemini-public/blob/1322d886e0f94704ac78196dac656c484f523506/index.html
   - title: Release v0.1.0
     url: https://github.com/workingyuanyuan/simple-gemini-public/releases/tag/v0.1.0
 ---

@@ -2,15 +2,15 @@
 title: BiliGemi-public
 description: BiliGemi（B 站影片摘要擴充功能）的落地頁與隱私權政策，不含原始碼。
 repo: workingyuanyuan/BiliGemi-public
-appliesTo: main 分支的 commit 4555082。這個專案沒有任何已標記的發行版。
-caveat: 這個專案沒有東西可建置或安裝，裡面只有 index.html、privacy.html、一份 README 與圖片。請透過落地頁上的 Chrome Web Store 連結安裝工具。專案沒有 LICENSE 檔案。
-effectiveDate: 2026-07-27
-lastVerified: 2026-11-18
+appliesTo: main 分支的 commit 87df6d9。這個專案沒有任何已標記的發行版。
+caveat: 這個專案沒有東西可建置或安裝，裡面只有 index.html、privacy.html、sitemap.xml、一份 README 與圖片。請透過落地頁上的 Chrome Web Store 連結安裝工具。專案沒有 LICENSE 檔案。
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit 4555082
-    url: https://github.com/workingyuanyuan/BiliGemi-public/blob/455508218c37916e41b00e44d61d44474c87e155/README.md
-  - title: index.html at commit 4555082
-    url: https://github.com/workingyuanyuan/BiliGemi-public/blob/455508218c37916e41b00e44d61d44474c87e155/index.html
+  - title: README.md at commit 87df6d9
+    url: https://github.com/workingyuanyuan/BiliGemi-public/blob/87df6d9b5488f1cc2e15ee625fa42d2d06f93725/README.md
+  - title: index.html at commit 87df6d9
+    url: https://github.com/workingyuanyuan/BiliGemi-public/blob/87df6d9b5488f1cc2e15ee625fa42d2d06f93725/index.html
 ---
 
 ## 事實
@@ -22,7 +22,7 @@ sources:
 | 隱私權政策 | <https://yuanaruru.com/BiliGemi-public/privacy.html>，生效日 2026 年 7 月 12 日 |
 | Chrome Web Store 頁面（落地頁有連結） | <https://chromewebstore.google.com/detail/biligemi-bilibili-x-gemin/npfkimhhdikledlpjfmpkaadhkpbhogk> |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
-| 檔案 | `README.md`、`index.html`、`privacy.html`，以及 `assets/` 底下的圖片 |
+| 檔案 | `README.md`、`index.html`、`privacy.html`、`sitemap.xml`，以及 `assets/` 底下的圖片 |
 | 發行版 | 無 |
 
 ## BiliGemi 的功能

@@ -2,17 +2,17 @@
 title: lite-claude-subagent-delegation
 description: Claude Code skill that delegates work to Codex CLI, Antigravity CLI and Claude subagents.
 repo: workingyuanyuan/lite-claude-subagent-delegation
-appliesTo: Commit ff6551c on branch main, folder claude-fable-5-2-opus-5-5. Main agent Claude Fable 5.2 or Claude Opus 5.5.
+appliesTo: Commit 582b0ea on branch main, folder claude-fable-5-2-opus-5-5. Main agent Claude Fable 5.2 or Claude Opus 5.5.
 caveat: The model roster is fixed to those two main agents. Codex CLI and Antigravity CLI must both be installed and logged in. The README is in Traditional Chinese only.
-effectiveDate: 2026-11-18
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-19
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/README.md
-  - title: CLAUDE.md at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/claude-fable-5-2-opus-5-5/CLAUDE.md
-  - title: LICENSE at commit ff6551c
-    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/ff6551ca49d3abb5cdf21009cbaa7da81380c186/LICENSE
+  - title: README.md at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/README.md
+  - title: CLAUDE.md at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/claude-fable-5-2-opus-5-5/CLAUDE.md
+  - title: LICENSE at commit 582b0ea
+    url: https://github.com/workingyuanyuan/lite-claude-subagent-delegation/blob/582b0ea7ecb66b1de784c3e578383c1ccd961b75/LICENSE
 ---
 
 ## Facts
@@ -79,14 +79,11 @@ Open a new conversation, check that `delegate` appears in the list of available 
 
 | Model | Effort | Work it gets |
 | --- | --- | --- |
-| Opus, through the Agent tool | `medium` | Merge-bound code too large for the main agent's context |
-| Fable, through the Agent tool, only when the main agent is Opus | `medium` | A third design opinion before building. No implementation |
-| `gpt-6.2-sol` | `medium` | Review of code the main agent wrote, and backend work that will not be merged |
-| `gpt-6.2-sol` | `high` | Large or risky diffs, or when medium fails acceptance |
-| `gpt-6.2-astra` | `medium` | Design discussion and second opinions before building, and root-cause hypotheses |
-| `gemini-4-argon-medium` | In the model ID | Design opinions alongside Astra, and judgment on images, PDFs, audio and video |
-| `gemini-4-hydrogen-medium` | In the model ID | Multimodal extraction, the default for media tasks |
-| `gemini-4-hydrogen-high` | In the model ID | Mechanical code tasks, and extraction that medium could not do |
+| Opus, through the Agent tool | `high` | Merge-bound code too large for the main agent's context. The main agent writes the rest itself |
+| Fable, through the Agent tool, only when the main agent is Opus | `medium` | A third design opinion before building, alongside Astra and Neon. No implementation |
+| `gpt-6.2-sol` | `medium` | Review of code the main agent wrote, including large or risky diffs, and backend work that will not be merged |
+| `gpt-6.2-astra` | `medium` | Design discussion and second opinions before building, and root-cause hypotheses. No implementation |
+| `gemini-4-neon-medium` | In the model ID | Design opinions alongside Astra, extraction from and judgment on images, PDFs, audio and video, and mechanical code tasks |
 
 ## Behaviour to expect
 

@@ -2,13 +2,13 @@
 title: Frontier-Model-Doh-Choo-choo
 description: Dashboard that compares frontier language models on capability and cost, from public benchmark snapshots.
 repo: workingyuanyuan/Frontier-Model-Doh-Choo-choo
-appliesTo: Commit 3c19776 on branch main. The repository has no tagged release.
+appliesTo: Commit 64aed53 on branch main. The repository has no tagged release.
 caveat: The repository has no LICENSE file. Benchmark scores belong to their original publishers. The dashboard shows the data version from build time, not live data.
-effectiveDate: 2026-11-18
-lastVerified: 2026-11-18
+effectiveDate: 2026-11-22
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit 3c19776
-    url: https://github.com/workingyuanyuan/Frontier-Model-Doh-Choo-choo/blob/3c19776e7ed72446f0d82104fa7a4c5167039363/README.md
+  - title: README.md at commit 64aed53
+    url: https://github.com/workingyuanyuan/Frontier-Model-Doh-Choo-choo/blob/64aed5313118caca35aea01f015b133a4104d061/README.md
 ---
 
 ## Facts

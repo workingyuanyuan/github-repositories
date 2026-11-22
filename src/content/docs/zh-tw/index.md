@@ -3,7 +3,7 @@ title: workingyuanyuan 的公開專案
 description: GitHub 帳號 workingyuanyuan 的 21 個公開專案。
 appliesTo: GitHub 帳號 workingyuanyuan 的公開、非 fork 專案
 caveat: 帳號下的 3 個公開 fork 不在範圍內。每個連結頁面都註明了讀取事實的 commit 與日期，而專案在該日期之後仍可能有變動。
-lastVerified: 2026-11-18
+lastVerified: 2026-11-22
 sources:
   - title: Repository list of workingyuanyuan on GitHub
     url: https://github.com/workingyuanyuan?tab=repositories
@@ -16,7 +16,7 @@ sources:
 | [Kage](/zh-tw/repos/kage/) | 把需求排版成暗色、僅供螢幕閱讀的 HTML 文件的 skill |
 | [instagram-linkedin-carousel-skill](/zh-tw/repos/instagram-linkedin-carousel-skill/) | 把長文轉成 Instagram 或 LinkedIn 輪播圖並匯出 PNG 與 PDF 的 skill |
 | [Moss-TTS-for-HyperFrames](/zh-tw/repos/moss-tts-for-hyperframes/) | 透過 Moss 雲端語音 API 產生旁白的 Node.js CLI 與 skill |
-| [skill.md-collections](/zh-tw/repos/skill-md-collections/) | 作者自製 skill 合集，目前收錄一個：`heii` |
+| [skill.md-collections](/zh-tw/repos/skill-md-collections/) | 作者自製 skill 合集，目前收錄兩個：`heii` 與 `3d-textbook-lesson` |
 | [agents.md-collections](/zh-tw/repos/agents-md-collections/) | 依模型整理並附帶設計筆記的 `AGENTS.md` 檔案，目前有 `gpt-6-astra` |
 
 ## Agent 之間的委派
@@ -24,8 +24,8 @@ sources:
 | 專案 | 用途 |
 | --- | --- |
 | [lite-claude-subagent-delegation](/zh-tw/repos/lite-claude-subagent-delegation/) | 讓 Claude Code 把工作委派給 Codex CLI、Antigravity CLI 與 Claude 子代理的 skill |
-| [lite-codex-subagent-delegation](/zh-tw/repos/lite-codex-subagent-delegation/) | 以三種固定配置把子任務委派給子代理的 Codex skill |
-| [lite-agy-subagent-delegation](/zh-tw/repos/lite-agy-subagent-delegation/) | 搭配 Gemini 4 Hydrogen worker 與 Claude Opus 5.5 顧問的 Antigravity skill |
+| [lite-codex-subagent-delegation](/zh-tw/repos/lite-codex-subagent-delegation/) | 把子任務委派給子代理的 Codex skill，依主代理分成兩個版本 |
+| [lite-agy-subagent-delegation](/zh-tw/repos/lite-agy-subagent-delegation/) | 搭配 Gemini 4 Neon worker 與兩個顧問模型的 Antigravity skill |
 | [antigravity-subagent-delegation](/zh-tw/repos/antigravity-subagent-delegation/) | 預設透過 Gemini Flash 委派給原生子代理的 Antigravity skill |
 | [codex-gemini-orchestrator](/zh-tw/repos/codex-gemini-orchestrator/) | 適用於 Windows 11、透過 Antigravity CLI 委派給 Gemini 的 Codex skill |
 

@@ -1,16 +1,18 @@
 ---
 title: skill.md-collections
-description: 作者自己的 agent skill 收藏，每個 skill 一個資料夾，目前只有 heii。
+description: 作者自己的 agent skill 收藏，每個 skill 一個資料夾，目前有 heii 與 3d-textbook-lesson 兩個。
 repo: workingyuanyuan/skill.md-collections
-appliesTo: main 分支的 commit b40e727。這個專案沒有任何已標記的發行版。
-caveat: 目前只收錄單一 skill。專案沒有 LICENSE 檔案。README 只有繁體中文版。
-effectiveDate: 2026-10-04
-lastVerified: 2026-11-18
+appliesTo: main 分支的 commit 195e5f3。這個專案沒有任何已標記的發行版。
+caveat: README 只說明資料夾配置，沒有列出收錄的 skill；專案根目錄下的資料夾就是 skill，目前有兩個。專案沒有 LICENSE 檔案。README 只有繁體中文版。
+effectiveDate: 2026-11-21
+lastVerified: 2026-11-22
 sources:
-  - title: README.md at commit b40e727
-    url: https://github.com/workingyuanyuan/skill.md-collections/blob/b40e72770bb821dd6f9ba3701bd34cc6fbd38153/README.md
-  - title: heii/SKILL.md at commit b40e727
-    url: https://github.com/workingyuanyuan/skill.md-collections/blob/b40e72770bb821dd6f9ba3701bd34cc6fbd38153/heii/SKILL.md
+  - title: README.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/README.md
+  - title: heii/SKILL.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/heii/SKILL.md
+  - title: 3d-textbook-lesson/SKILL.md at commit 195e5f3
+    url: https://github.com/workingyuanyuan/skill.md-collections/blob/195e5f343c53657988b8c833ef099b974f9e921d/3d-textbook-lesson/SKILL.md
 ---
 
 ## 事實
@@ -19,8 +21,8 @@ sources:
 | --- | --- |
 | 類型 | Agent skill 合集 |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
-| 專案內收錄的 skill | 1 個：`heii` |
-| 檔案 | `README.md`、`.gitignore`、`heii/SKILL.md`、`heii/agents/openai.yaml` |
+| 專案內收錄的 skill | 2 個：`heii` 與 `3d-textbook-lesson` |
+| 檔案 | `README.md`、`.gitignore`、`heii/`（`SKILL.md`、`agents/openai.yaml`）、`3d-textbook-lesson/`（`SKILL.md`、`engine/`、`examples/`） |
 | 發行版 | 無 |
 
 ## Skills
@@ -28,6 +30,7 @@ sources:
 | Skill | 出自其 `SKILL.md` 的說明 |
 | --- | --- |
 | `heii` | 「在明確呼叫時，以平實清楚的語言溝通。」 |
+| `3d-textbook-lesson` | 把教科書 PDF 的一個章節做成教師上課投影用的 3D 互動課本：一個 three.js 靜態網頁，畫面是一本攤開的書，圖表從書頁上浮起，點一下就自動播完整段示範。它所用的引擎放在這個 skill 的 `engine/` 資料夾 |
 
 ## 資料夾配置
 

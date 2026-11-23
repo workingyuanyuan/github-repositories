@@ -38,7 +38,8 @@ Run `pnpm upstream` and read `upstream/README.md`: it says what is watched, what
 
 ## Skin rules
 
-- Decorative characters (`#`, `>`, `[K]`, `~/`) are drawn with CSS `content`. Never write them into page text.
+- Decorative characters (`#`, `>`, `~/`) are drawn with CSS `content`. Never write them into page text.
+- The header links the sidebar's sections (`SiteTitle.astro`, from the sidebar groups). The sidebar has one group, Repositories, so the header shows no section links; a second group brings them back, and `SECTIONS` in `check-dist.mjs` must list it. The Markdown twin, `llms.txt` and `index.json` are linked from the page notes, not the header. Decided 2026-11-22: the header is for human readers; the `[H]` `[M]` `[L]` `[J]` links and their keyboard shortcuts were removed.
 - No status line at the bottom of the window (owner's decision).
 - Three Starlight components are overridden: `SiteTitle`, `MarkdownContent` and `ThemeSelect` (three buttons, so each theme is one click away; it keeps Starlight's storage key `starlight-theme`). Prefer CSS in `src/styles/tui.css` over another override.
 - The first screen shows content: the answer sits under the title, and the page notes (scope, caveat, dates, repository, sources) come after the body. A visually hidden note at the top repeats scope and caveat so that they fall within the first 5,000 extracted characters.

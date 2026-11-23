@@ -35,7 +35,7 @@ export default defineConfig({
 			],
 			customCss: ['./src/styles/tui.css'],
 			components: {
-				// Three overrides: the nav hints in the header, the answer and page notes around
+				// Three overrides: the section links in the header, the answer and page notes around
 				// the body, and one-click theme buttons.
 				SiteTitle: './src/components/SiteTitle.astro',
 				MarkdownContent: './src/components/MarkdownContent.astro',

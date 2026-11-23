@@ -7,7 +7,7 @@
 //  3. First 5,000 characters: the answer, scope and caveat appear within the first
 //     5,000 characters of the Markdown twin and of the text extracted from the HTML.
 //  4. Equivalence: headings and code blocks extracted from the HTML match the twin.
-//  5. No decoration leak: bracketed key hints and heading marks must not
+//  5. No decoration leak: heading marks and the site title prefix must not
 //     appear in the text extracted from the HTML.
 //  6. Language parity: both languages have the same pages, dates, sources and code.
 //  7. Bundles: each language's llms-full.txt and llms-small.txt carry every page's
@@ -16,8 +16,9 @@
 //  9. The 404 page links each language's home page and page list.
 // 10. robots.txt names the sitemap and carries a Content-Signal line. Crawlers read only
 //     the one at the domain root, which the user site serves and checks.
-// Header and page text: the header links the twin, llms.txt and index.json with key hints
-//     drawn by CSS; no text in <main> is about the site or the page (scripts/check-page-text.mjs).
+// Header and page text: the header links the first page of each sidebar section (none while
+//     the sidebar has one group); the page notes link the Markdown twin, llms.txt and
+//     index.json; no text in <main> is about the site or the page (scripts/check-page-text.mjs).
 // Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -30,9 +31,12 @@ import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llms
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 import { checkFound } from './check-found.mjs';
-import { checkHeaderLinks, checkKeyHintCss, checkSelfReference } from './check-page-text.mjs';
+import { checkHeaderAndOutputs, checkSelfReference } from './check-page-text.mjs';
 
 const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
+// The top-level sidebar groups, in order, by the id of their first page (astro.config.mjs).
+// Empty: a site with one group ("Repositories") shows no section links.
+const SECTIONS = [];
 const LIMIT = 5000;
 const failures = [];
 const fail = (page, message) => failures.push(`${page}: ${message}`);
@@ -79,7 +83,16 @@ for (const file of htmlFiles(DIST)) {
 	if (file !== '404.html' && !expectedHtml.has(file)) fail(file, 'HTML page without a content entry');
 }
 
+// Each page opens two DOMs. jsdom frees a closed window only once the event loop runs, so a
+// loop that never yields keeps every document (a 700-page site passed Node's 4 GB heap): close
+// the previous page's windows and yield.
+let openWindows = [];
 for (const { id, data } of pages) {
+	if (openWindows.length) {
+		for (const w of openWindows) w.close();
+		openWindows = [];
+		await new Promise((resolve) => setImmediate(resolve));
+	}
 	const mdFile = mdPath(id).slice(1);
 	const htmlFile = (htmlPath(id) + 'index.html').slice(1);
 	if (!existsSync(join(DIST, htmlFile))) {
@@ -94,6 +107,7 @@ for (const { id, data } of pages) {
 	const html = read(htmlFile);
 	const dom = new JSDOM(html, { url: SITE + htmlPath(id) });
 	const doc = dom.window.document;
+	openWindows.push(dom.window);
 
 	// 1. Pairing
 	const alternate = doc.querySelector('link[rel="alternate"][type="text/markdown"]');
@@ -144,7 +158,9 @@ for (const { id, data } of pages) {
 	}
 
 	// 4. Equivalence, on the article that a readability-style extractor keeps.
-	const article = new Readability(new JSDOM(html, { url: SITE + htmlPath(id) }).window.document).parse();
+	const articleDom = new JSDOM(html, { url: SITE + htmlPath(id) });
+	openWindows.push(articleDom.window);
+	const article = new Readability(articleDom.window.document).parse();
 	const mainEl = doc.querySelector('main');
 	const extracted = turndown.turndown(mainEl.innerHTML);
 	const mdBody = md.slice(md.indexOf('\n---\n') + 5);
@@ -187,15 +203,18 @@ for (const { id, data } of pages) {
 		}
 	}
 
-	// Header links and page text (scripts/check-page-text.mjs): the header links the twin,
-	// llms.txt and index.json, and no text in <main> is about the site or the page.
-	checkHeaderLinks(doc, id, fail, { markdown: withBase(mdPath(id)), llms: withBase(llmsPath(localeOf(id))), json: withBase('/index.json') });
+	// Header, page notes and page text (scripts/check-page-text.mjs): the header links the
+	// sections in the sidebar's order, the page notes link the twin, llms.txt and index.json,
+	// and no text in <main> is about the site or the page.
+	checkHeaderAndOutputs(doc, id, fail, {
+		sections: SECTIONS.map((s) => withBase(htmlPath(idInLocale(s, localeOf(id))))),
+		outputs: [withBase(mdPath(id)), withBase(llmsPath(localeOf(id))), withBase('/index.json')],
+	});
 	checkSelfReference(doc, id, fail);
 
 	// 5. No decoration leak into extracted text.
 	const visible = normalize(doc.body.textContent);
 	for (const [name, pattern] of [
-		['bracketed key hint', /\[[A-Z]\]\s?[A-Za-z]/],
 		['heading mark', /(^|\s)#{1,3} (Facts|事實)/],
 		['site title prefix', /~\/yuanaruru/],
 	]) {
@@ -255,9 +274,6 @@ for (const locale of LOCALES) {
 const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
-
-// The key hints of the header links ([M], [L], [J]) are drawn by the built CSS.
-checkKeyHintCss(DIST, fail);
 
 checkFound(DIST, pages, fail);
 

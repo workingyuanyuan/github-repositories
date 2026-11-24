@@ -58,7 +58,7 @@ Shinsekai/
 | LLM provider | `ChatGPT` 或 `Ollama` |
 | Base URL | `http://127.0.0.1:8000/v1` |
 | API Key | `none`，或任意字元 |
-| Model name | 從下方清單任選一個 |
+| Model name | 任一個[模型](#模型) |
 
 ## 模型
 

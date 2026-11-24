@@ -18,7 +18,10 @@
 //     the one at the domain root, which the user site serves and checks.
 // Header and page text: the header links the first page of each sidebar section (none while
 //     the sidebar has one group); the page notes link the Markdown twin, llms.txt and
-//     index.json; no text in <main> is about the site or the page (scripts/check-page-text.mjs).
+//     index.json; no text in <main> is about the site or the page; the body does not open
+//     with a paragraph after the answer line (scripts/check-page-text.mjs).
+// Prose ledger: every unit of the site's own prose has been read against
+//     scripts/prose-rubric.md and is recorded in reviews/prose-ledger.json (scripts/prose-review.mjs).
 // Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
@@ -31,7 +34,8 @@ import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llms
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 import { checkFound } from './check-found.mjs';
-import { checkHeaderAndOutputs, checkSelfReference } from './check-page-text.mjs';
+import { checkHeaderAndOutputs, checkSelfReference, checkOpening } from './check-page-text.mjs';
+import { checkProse } from './prose-review.mjs';
 
 const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
 // The top-level sidebar groups, in order, by the id of their first page (astro.config.mjs).
@@ -211,6 +215,7 @@ for (const { id, data } of pages) {
 		outputs: [withBase(mdPath(id)), withBase(llmsPath(localeOf(id))), withBase('/index.json')],
 	});
 	checkSelfReference(doc, id, fail);
+	checkOpening(doc, id, fail);
 
 	// 5. No decoration leak into extracted text.
 	const visible = normalize(doc.body.textContent);
@@ -274,6 +279,9 @@ for (const locale of LOCALES) {
 const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
+
+// Prose ledger: text the site writes itself, read once by a reader of another model.
+await checkProse(fail, DIST);
 
 checkFound(DIST, pages, fail);
 

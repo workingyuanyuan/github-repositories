@@ -58,7 +58,7 @@ Double-click `start_bridge.bat`. The bridge is ready when the console shows:
 | LLM provider | `ChatGPT` or `Ollama` |
 | Base URL | `http://127.0.0.1:8000/v1` |
 | API Key | `none`, or any characters |
-| Model name | One from the list below |
+| Model name | Any of the [models](#models) |
 
 ## Models
 

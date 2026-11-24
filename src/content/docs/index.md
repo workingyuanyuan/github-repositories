@@ -2,7 +2,7 @@
 title: Public repositories of yuanaruru
 description: The 21 public repositories of the GitHub account workingyuanyuan.
 appliesTo: Public, non-fork repositories of the GitHub account workingyuanyuan
-caveat: The 3 public forks on the account are not covered. Each linked page states the commit and date its facts were read from, and repositories change after that date.
+caveat: The account also has 3 public forks. Facts are those of the commit named for each repository, and repositories change after it.
 lastVerified: 2026-11-22
 sources:
   - title: Repository list of workingyuanyuan on GitHub

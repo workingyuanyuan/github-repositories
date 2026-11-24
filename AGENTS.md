@@ -14,6 +14,8 @@ This site documents the public GitHub repositories of `workingyuanyuan`. It is s
 pnpm verify      # build, then run the acceptance checks. Run this before you call a change done.
 pnpm build       # build only
 pnpm check       # acceptance checks on an existing dist/
+node scripts/prose-review.mjs run      # after a build: a reader of another model reads prose not yet read; fix what it flags (reviews/prose-ledger.json)
+node scripts/prose-review.mjs status   # count the units of prose not yet read
 pnpm upstream    # compare the repositories with what the pages were written from; upstream/README.md
 pnpm preview     # serve dist/ at http://127.0.0.1:4399/github-repositories/ with the same Content-Type headers as GitHub Pages
 astro dev --background   # dev server; manage with `astro dev stop|status|logs`

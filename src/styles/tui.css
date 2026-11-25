@@ -37,7 +37,7 @@
 	--sl-text-h4: 1rem;
 	--sl-text-h5: 1rem;
 	--sl-line-height: 1.7;
-	--sl-content-width: 52rem;
+	--sl-content-width: 50rem;
 	--sl-sidebar-width: 17rem;
 }
 
@@ -94,6 +94,12 @@
 	[data-has-sidebar][data-has-toc] .main-pane {
 		--sl-content-margin-inline: auto;
 		width: calc(100% - var(--sl-sidebar-width));
+	}
+}
+/* The text column: 50rem, 60rem from 110rem, as on every site. */
+@media (min-width: 110rem) {
+	:root {
+		--sl-content-width: 60rem;
 	}
 }
 

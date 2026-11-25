@@ -18,21 +18,36 @@ const groups = sidebar
 const sections = groups.length > 1 ? groups : [];
 ---
 
-<a href={siteTitleHref} class="site-title" translate="no">{siteTitle}</a>
+<a href={siteTitleHref} class="site-title" translate="no"><svg class="site-icon" viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect width="32" height="32" class="ground" /><path d="M8 9l7 7-7 7" class="mark" fill="none" stroke-width="3.5" stroke-linecap="square" /><rect x="17" y="21" width="8" height="3.5" class="glyph" /></svg>{siteTitle}</a>
 {sections.length > 0 && <nav class="sections" aria-label={t.sections}>
 	{sections.map((s) => <a href={s.href} aria-current={s.current ? 'true' : undefined}>{s.label}</a>)}
 </nav>}
 
 <style>
 	.site-title {
+		display: inline-flex;
+		align-items: center;
 		font-weight: 700;
 		color: var(--sl-color-white);
 		text-decoration: none;
 		white-space: nowrap;
 	}
-	.site-title::before {
-		content: '~/';
-		color: var(--sl-color-accent);
+	/* The site's icon, the same drawing as public/favicon.svg, in the theme's colours.
+	   Inline SVG so that it follows the theme buttons; check-dist strips svg from text. */
+	.site-icon {
+		flex: none;
+		margin-inline-end: 0.6em;
+		width: 1.4em;
+		height: 1.4em;
+	}
+	.site-icon .ground {
+		fill: var(--sl-color-accent);
+	}
+	.site-icon .mark {
+		stroke: var(--sl-color-black);
+	}
+	.site-icon .glyph {
+		fill: var(--sl-color-black);
 	}
 	.site-title::after {
 		content: '█';

@@ -7,8 +7,8 @@
 //  3. First 5,000 characters: the answer, scope and caveat appear within the first
 //     5,000 characters of the Markdown twin and of the text extracted from the HTML.
 //  4. Equivalence: headings and code blocks extracted from the HTML match the twin.
-//  5. No decoration leak: heading marks and the cursor after the site title must not
-//     appear in the text extracted from the HTML.
+//  5. No decoration leak: heading marks, the prompt before the site title and the cursor
+//     after it must not appear in the text extracted from the HTML.
 //  6. Language parity: both languages have the same pages, dates, sources and code.
 //  7. Bundles: each language's llms-full.txt and llms-small.txt carry every page's
 //     answer and caveat; a hidden pointer to the Markdown twin survives extraction.
@@ -221,6 +221,7 @@ for (const { id, data } of pages) {
 	const visible = normalize(doc.body.textContent);
 	for (const [name, pattern] of [
 		['heading mark', /(^|\s)#{1,3} (Facts|事實)/],
+		['site title prompt', /~\/yuanaruru/],
 		['site title cursor', /yuanaruru█/],
 	]) {
 		if (pattern.test(visible)) fail(id, `decoration leaked into page text: ${name}`);

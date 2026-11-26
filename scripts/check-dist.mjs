@@ -23,6 +23,7 @@
 // Prose ledger: every unit of the site's own prose has been read against
 //     scripts/prose-rubric.md and is recorded in reviews/prose-ledger.json (scripts/prose-review.mjs).
 // Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
+// Heading levels: h2, h3 and h4 get smaller in that order at every width (scripts/check-headings.mjs).
 
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join, relative } from 'node:path';
@@ -34,6 +35,7 @@ import { SITE, LOCALES, LLMS_NOTES, localeOf, idInLocale, htmlPath, mdPath, llms
 import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 import { checkFound } from './check-found.mjs';
+import { checkHeadings } from './check-headings.mjs';
 import { checkHeaderAndOutputs, checkSelfReference, checkOpening } from './check-page-text.mjs';
 import { checkProse } from './prose-review.mjs';
 
@@ -285,6 +287,7 @@ if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal li
 await checkProse(fail, DIST);
 
 checkFound(DIST, pages, fail);
+checkHeadings(fail);
 
 if (failures.length) {
 	console.error(`FAIL: ${failures.filter((f) => !f.startsWith('    ')).length} problem(s) in ${pages.length} pages\n`);

@@ -65,6 +65,7 @@ Run `pnpm upstream` and read `upstream/README.md`: it says what is watched, what
 | `scripts/check-dist.mjs` | Acceptance checks |
 | `src/lib/sitemap.mjs` | Sitemap options: `lastmod` of each page from `lastVerified` |
 | `scripts/check-found.mjs` | Checks called by `check-dist.mjs`: a title and description of its own for every page, canonical, `hreflang`, sitemap |
+| `scripts/check-headings.mjs` | Called by `check-dist.mjs`: h2, h3 and h4 get smaller in that order at a phone width and on wide windows, from Starlight's sizes and the skin's own `customCss` files |
 | `tests/agent-eval/questions.json` | The site's question list: what readers ask, each with the expected answer and qualifier. The agent test and the search test draw from it |
 | `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow. The key file is at the domain root, in the root site |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |

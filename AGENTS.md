@@ -1,6 +1,6 @@
 # Rules for agents maintaining this site
 
-This site documents the public GitHub repositories of `workingyuanyuan`. It is served at `https://yuanaruru.com/github-repositories/` from the repository `github-repositories`. Its first readers are AI agents; humans come second. Markdown source is the only content source, and the HTML is a skin over it.
+This site documents the public GitHub repositories of `workingyuanyuan`. It is served at `https://yuanaruru.com/github-repositories/` from the repository `github-repositories`. Pages are hand-written Markdown, the only content source. It is the reference implementation of `../AGENTS.md`, whose rules apply; this file holds what is specific to this site. Following the sources is in `upstream/README.md`; the question list and test results are in `tests/agent-eval/`.
 
 ## Decisions
 
@@ -18,35 +18,29 @@ node scripts/prose-review.mjs run      # after a build: a reader of another mode
 node scripts/prose-review.mjs status   # count the units of prose not yet read
 pnpm upstream    # compare the repositories with what the pages were written from; upstream/README.md
 pnpm preview     # serve dist/ at http://127.0.0.1:4399/github-repositories/ with the same Content-Type headers as GitHub Pages
-astro dev --background   # dev server; manage with `astro dev stop|status|logs`
+pnpm astro dev --background   # dev server; manage with `pnpm astro dev stop|status|logs`
 ```
 
 ## When the repositories change
 
-Run `pnpm upstream` and read `upstream/README.md`: it says what is watched, what each line of the report means and how to update a page. A workflow runs the command every week and keeps one issue with the differences (owner's decision, 2026-11-22: weekly, not daily). Do this before you update a repository page for any other reason.
+Run `pnpm upstream` and read `upstream/README.md` before you update a repository page for any reason. A workflow runs the command every week and keeps one issue (owner, 2026-11-22: weekly, not daily).
 
 ## Content rules
 
 - Pages live in `src/content/docs/` (English) and `src/content/docs/zh-tw/` (Traditional Chinese). Every page exists in both languages with the same facts, dates, sources and code blocks.
-- Pages are plain `.md`. No MDX, no components, no `:::` directives. An exception needs an explicit Markdown output and a test in `scripts/check-dist.mjs`.
-- Required frontmatter, enforced by `src/content.config.ts`: `title`, `description` (one short sentence saying what the subject is: at most 110 characters in English, 70 in Chinese; details belong in the body), `appliesTo`, `caveat`, `lastVerified`, `sources`. Optional: `effectiveDate` (date of the commit or release the facts were read from), `repo`.
-- The answer, scope and caveat must appear within the first 5,000 characters. There is no limit on total page length.
+- Frontmatter is enforced by `src/content.config.ts`. Optional fields: `effectiveDate` (date of the commit or release the facts were read from), `repo` (shown in the page notes).
 - State only facts you verified against the repository. Link sources to a fixed commit, not to a branch.
 - Use `patch` fences for diffs, never `diff`: Starlight draws `diff` markers with CSS, so an agent reading the HTML loses the `+` and `-`.
-- Commands in code blocks carry no `$` prompt.
-- A page says what its subject is. Do not write text addressed to agents into visible content (no "for agents", no "how to read this site"). Guidance for agents lives in each language's `llms.txt` (its opening notes are `LLMS_NOTES` in `src/lib/site.mjs`) and in the pointer that `MarkdownContent.astro` hides from sighted readers.
+- Guidance for agents lives in each language's `llms.txt` (its opening notes are `LLMS_NOTES` in `src/lib/site.mjs`) and in the pointer that `MarkdownContent.astro` hides from sighted readers.
 - When a README gives a prompt in Chinese, keep it in Chinese inside the code block in both languages, and explain its meaning in the English page's prose.
-- Do not publish personal contact details such as email addresses, even when a README lists them.
 
 ## Skin rules
 
 - Decorative characters (`#`, `>`, `~/`) are drawn with CSS `content`. Never write them into page text.
-- The header links the sidebar's sections (`SiteTitle.astro`, from the sidebar groups). The sidebar has one group, Repositories, so the header shows no section links; a second group brings them back, and `SECTIONS` in `check-dist.mjs` must list it. The Markdown twin, `llms.txt` and `index.json` are linked from the page notes, not the header. Decided 2026-11-22: the header is for human readers; the `[H]` `[M]` `[L]` `[J]` links and their keyboard shortcuts were removed.
-- No status line at the bottom of the window (owner's decision).
+- The sidebar has one group, Repositories, so the header shows no section links; a second group brings them back (`SiteTitle.astro` builds them from the sidebar groups), and `SECTIONS` in `check-dist.mjs` must list it.
 - Three Starlight components are overridden: `SiteTitle`, `MarkdownContent` and `ThemeSelect` (three buttons, so each theme is one click away; it keeps Starlight's storage key `starlight-theme`). Prefer CSS in `src/styles/tui.css` over another override.
-- The first screen shows content: the answer sits under the title, and the page notes (scope, caveat, dates, repository, sources) come after the body. A visually hidden note at the top repeats scope and caveat so that they fall within the first 5,000 extracted characters.
-- The hidden note, the answer and the page notes are direct children of the article container (`MarkdownContent.astro`), with no wrapper. Readability-style extractors drop them anywhere else, and a wrapper made one keep the notes and drop the body.
-- Wide windows: the table of contents keeps the sidebar's width and the text column sits in the middle of the space between the two ("Wide windows" block in `tui.css`).
+- The hidden note, the answer and the page notes are direct children of the article container (`MarkdownContent.astro`), with no wrapper (`../STACK.md`, Rendering).
+- The "Wide windows" and "Frame" blocks of `tui.css` are the ones other sites copy (`../STACK.md`).
 - The same component adds the links on the 404 page. GitHub Pages serves one `404.html` for every language, so they are bilingual.
 
 ## Where things are
@@ -70,6 +64,5 @@ Run `pnpm upstream` and read `upstream/README.md`: it says what is watched, what
 | `scripts/indexnow.mjs` | Lists pages whose Markdown twin differs from the live one; the deploy workflow submits them to IndexNow. The key file is at the domain root, in the root site |
 | `scripts/preview.mjs` | Local preview with GitHub Pages style headers |
 | `scripts/upstream.mjs`, `upstream/`, `.github/workflows/upstream.yml` | The check on the sources: the script, its README, the list kept by hand (`sources.json`), the recorded state (`manifest.json`) and the weekly run |
-| `tests/agent-eval/` | Ten pilot questions, the fetch tool for agent tests, and the recorded results |
 
 Astro documentation: https://docs.astro.build. Starlight documentation: https://starlight.astro.build.

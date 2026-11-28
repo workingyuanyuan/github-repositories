@@ -10,7 +10,7 @@
     "astro": "astro",
     "check": "node scripts/check-dist.mjs",
     "upstream": "node scripts/upstream.mjs",
-    "verify": "astro build && node scripts/check-dist.mjs"
+    "verify": "node scripts/check-agents.mjs && astro build && node scripts/check-dist.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-satteri": "0.4.10",

@@ -19,7 +19,7 @@ sources:
 | --- | --- |
 | Kind | Antigravity global skill, name `delegate` |
 | License | MIT |
-| Current version folder | `gemini-4-neon`, for a Gemini 4 Neon main agent |
+| Current version folder | `gemini-4-neon` |
 | Previous version folder | `gemini-4-argon`, kept in the repository: Gemini 4 Argon main agent, Gemini 4 Hydrogen workers and one advisor, Claude Opus 5.5 |
 | Requires | Antigravity CLI `agy`, logged in. `gemini-4-neon` is verified with 1.5.12, `gemini-4-argon` with 1.5.3 |
 | Platforms | WSL or Linux with bash, and Windows with PowerShell 5.1 or 7. The PowerShell form of the advisor call is not yet tested on Windows |

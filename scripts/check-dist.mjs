@@ -19,7 +19,7 @@
 // Header and page text: the header links the first page of each sidebar section (none while
 //     the sidebar has one group); the page notes link the Markdown twin, llms.txt and
 //     index.json; no text in <main> is about the site or the page; the body does not open
-//     with a paragraph after the answer line (scripts/check-page-text.mjs).
+//     with a paragraph after the answer line; every footnote links a listed source (scripts/check-page-text.mjs).
 // Prose ledger: every unit of the site's own prose has been read against
 //     scripts/prose-rubric.md and is recorded in reviews/prose-ledger.json (scripts/prose-review.mjs).
 // Being found: title, description, canonical, hreflang and sitemap (scripts/check-found.mjs).
@@ -36,7 +36,7 @@ import { bundlePath } from '../src/lib/llms.mjs';
 import { readPages } from '../src/lib/content-index.mjs';
 import { checkFound } from './check-found.mjs';
 import { checkHeadings } from './check-headings.mjs';
-import { checkHeaderAndOutputs, checkSelfReference, checkOpening } from './check-page-text.mjs';
+import { checkHeaderAndOutputs, checkSelfReference, checkOpening, checkFootnotes } from './check-page-text.mjs';
 import { checkProse } from './prose-review.mjs';
 
 const DIST = fileURLToPath(new URL('../dist/', import.meta.url));
@@ -218,10 +218,12 @@ for (const { id, data } of pages) {
 	});
 	checkSelfReference(doc, id, fail);
 	checkOpening(doc, id, fail);
+	checkFootnotes(doc, id, fail, (data.sources || []).map((s) => s.url.replace(/\/$/, '')));
 
 	// 5. No decoration leak into extracted text.
 	const visible = normalize(doc.body.textContent);
 	for (const [name, pattern] of [
+		['footnote back-link glyph', /↩/],
 		['heading mark', /(^|\s)#{1,3} (Facts|事實)/],
 		['site title prompt', /~\/yuanaruru/],
 		['site title cursor', /yuanaruru█/],
@@ -283,7 +285,7 @@ const robots = existsSync(join(DIST, 'robots.txt')) ? read('robots.txt') : '';
 if (!robots.includes(`Sitemap: ${SITE}/sitemap-index.xml`)) fail('robots.txt', 'missing or without the sitemap');
 if (!/^Content-Signal: /m.test(robots)) fail('robots.txt', 'no Content-Signal line');
 
-// Prose ledger: text the site writes itself, read once by a reader of another model.
+// Prose ledger: text the site writes itself, read once by a reader.
 await checkProse(fail, DIST);
 
 checkFound(DIST, pages, fail);

@@ -21,7 +21,7 @@ sources:
 | --- | --- |
 | Kind | Codex personal skill, name `delegate` |
 | License | No LICENSE file. GitHub detects no license |
-| Version folders | `gpt-6.2-astra`, for a GPT-6.2 Astra main agent, and `gpt-6-astra`, for a GPT-6 Astra main agent |
+| Version folders | `gpt-6.2-astra` and `gpt-6-astra` |
 | Releases | None |
 
 ## Files
@@ -53,14 +53,14 @@ gpt-6-astra/
 
 ## Install
 
-Copy the folder `skills/delegate` of your version into your personal skills directory: `gpt-6.2-astra/skills/delegate` or `gpt-6-astra/skills/delegate`. The commands below use `gpt-6-astra`, as the README does.
+Copy the folder `skills/delegate` of your version into your personal skills directory: `gpt-6.2-astra/skills/delegate` or `gpt-6-astra/skills/delegate`.
 
 | System | Personal skills directory |
 | --- | --- |
 | Windows | `%USERPROFILE%\.agents\skills` |
 | macOS and Linux | `~/.agents/skills` |
 
-On Linux, from a clone of the repository:
+On Linux, from a clone of the repository, for `gpt-6-astra`:
 
 ```bash
 mkdir -p ~/.agents/skills

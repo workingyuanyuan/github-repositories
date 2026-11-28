@@ -3,7 +3,7 @@ title: Kage
 description: 把需求排版成暗色、僅供螢幕閱讀的 HTML 文件的 agent skill。
 repo: workingyuanyuan/Kage
 appliesTo: main 分支的 commit d5fb072。這個專案沒有任何已標記的發行版。
-caveat: 產出只有供螢幕閱讀的 HTML。SKILL.md 寫明原生 Office 檔、PDF 與淺色設計需要其他交付方式。截圖與像素檢查需要 Chrome 或 Edge。
+caveat: 產出只有供螢幕閱讀的 HTML；原生 Office 檔、PDF 與淺色設計需要其他交付方式。截圖與像素檢查需要 Chrome 或 Edge。
 effectiveDate: 2026-09-12
 lastVerified: 2026-11-18
 sources:
@@ -34,7 +34,7 @@ sources:
 git clone https://github.com/workingyuanyuan/Kage.git
 ```
 
-接著把 clone 下來的資料夾移到你的 agent 的 skill 路徑。Agent 會先讀 `SKILL.md`，需要時再開啟其他規格與模板。README 沒有指定特定的 skill 路徑。
+接著把 clone 下來的資料夾移到你的 agent 的 skill 路徑。Agent 會先讀 `SKILL.md`，需要時再開啟其他規格與模板。
 
 如果找不到 Chrome 或 Edge，把環境變數 `KAGE_CHROME` 設為瀏覽器執行檔的路徑。
 
@@ -60,7 +60,7 @@ Turn these meeting notes into a one-pager for my manager
 
 ## 檢查指令
 
-README 列出以下指令，各自的適用範圍記載在專案內的 `references/production.md`。
+各指令的適用範圍記載在專案內的 `references/production.md`。
 
 ```bash
 node scripts/kage.mjs check
@@ -84,7 +84,7 @@ node scripts/kage.mjs bg <background.png>
 - 展示文件中的公司、人物與數字全部是虛構的。
 - 缺少必要素材時，工作文件會標記為 `[需要資料：…]`。
 - 第二種語氣模式「develop」只有在指名要求時才會使用。
-- README 註明架構參考自 tw93 的 [Kami](https://github.com/tw93/kami)：把文件排版做成 agent skill 來發布。
+- 架構參考 tw93 的 [Kami](https://github.com/tw93/kami)：把文件排版做成 agent skill 來發布。
 
 ## 相關
 

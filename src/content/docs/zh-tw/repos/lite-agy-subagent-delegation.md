@@ -19,7 +19,7 @@ sources:
 | --- | --- |
 | 類型 | Antigravity 全域 skill，名稱為 `delegate` |
 | 授權 | MIT |
-| 目前版本資料夾 | `gemini-4-neon`，給 Gemini 4 Neon 主代理使用 |
+| 目前版本資料夾 | `gemini-4-neon` |
 | 先前版本資料夾 | `gemini-4-argon`，保留在專案中：Gemini 4 Argon 主代理、Gemini 4 Hydrogen worker，以及單一顧問 Claude Opus 5.5 |
 | 需求 | Antigravity CLI `agy`，已登入。`gemini-4-neon` 已驗證 1.5.12，`gemini-4-argon` 已驗證 1.5.3 |
 | 平台 | WSL 或 Linux（bash），以及 Windows（PowerShell 5.1 或 7）。呼叫顧問的 PowerShell 寫法尚未在 Windows 上實測 |

@@ -29,8 +29,7 @@ sources:
 
 ## What Simple Gemini does
 
-- Summarises text selected on a web page.
-- Summarises text pasted or typed into the popup.
+- Summarises text selected on a web page, or pasted or typed into the popup.
 - Uses Chrome's built-in Gemini Nano for local processing.
 - Or uses the Gemini API with your own key.
 
@@ -47,7 +46,7 @@ Open the listing linked from the landing page and add the extension to Chrome.
 5. Click Load unpacked in the top-left corner.
 6. Select the extracted folder, the one that contains `manifest.json`.
 
-Direct link to the package:
+The ZIP package of version 0.1.1 is at this address:
 
 ```text
 https://yuanaruru.com/simple-gemini-public/downloads/simple-gemini-0.1.1.zip

@@ -15,7 +15,6 @@ sources:
 
 | Field | Value |
 | --- | --- |
-| Kind | Collection of `AGENTS.md` files with design notes |
 | License | No LICENSE file. GitHub detects no license |
 | Models covered | 1: `gpt-6-astra`, status "Output Discipline" recorded |
 | Releases | None |

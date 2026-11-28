@@ -55,7 +55,7 @@ Brand Voice: ...
 
 ## 安裝
 
-README 沒有提供安裝指令。這個專案本身就是根目錄帶有 `SKILL.md` 的 skill 資料夾，因此將 clone 下來的目錄放到 agent 載入 skill 的位置即可：
+這個專案本身就是根目錄帶有 `SKILL.md` 的 skill 資料夾，因此將 clone 下來的目錄放到 agent 載入 skill 的位置即可：
 
 ```bash
 git clone https://github.com/workingyuanyuan/instagram-linkedin-carousel-skill.git
@@ -63,4 +63,4 @@ git clone https://github.com/workingyuanyuan/instagram-linkedin-carousel-skill.g
 
 ## 致謝
 
-README 感謝 coreyhaines31，並說明敘事框架參考自 <https://github.com/coreyhaines31/marketingskills> 中的 `marketingskills/skills/social/references`。
+敘事框架參考 coreyhaines31 的 <https://github.com/coreyhaines31/marketingskills> 中的 `marketingskills/skills/social/references`。

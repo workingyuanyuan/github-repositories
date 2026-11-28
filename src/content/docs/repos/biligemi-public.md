@@ -27,14 +27,12 @@ sources:
 
 ## What BiliGemi does
 
-| Feature | Description from the README and landing page |
+| Feature | Description |
 | --- | --- |
 | Video summary | One click produces a structured outline of a Bilibili video's subtitles |
 | Comment summary | One click summarises popular viewer comments |
 | Model choice | Chrome's built-in Gemini Nano, or a custom API server with the user's own key |
-| Privacy | No relay server. API keys are stored locally, and summaries go directly to the AI provider |
-
-The README states that the software collects no browsing history or account information.
+| Privacy | No relay server. API keys are stored locally, and summaries go directly to the AI provider. No browsing history or account information is collected |
 
 ## Install
 
@@ -42,4 +40,4 @@ Open the landing page and use its "Add to Chrome" button, which leads to the Chr
 
 ## Contact
 
-The README lists the GitHub profile <https://github.com/workingyuanyuan> for suggestions and questions.
+Suggestions and questions go to the GitHub profile <https://github.com/workingyuanyuan>.

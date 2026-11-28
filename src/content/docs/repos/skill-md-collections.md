@@ -3,7 +3,7 @@ title: skill.md-collections
 description: Collection of the author's agent skills, one folder per skill. It holds two, heii and 3d-textbook-lesson.
 repo: workingyuanyuan/skill.md-collections
 appliesTo: Commit 195e5f3 on branch main. The repository has no tagged release.
-caveat: The README describes the folder layout and does not list the skills. The skills are the folders at the repository root, two so far. The repository has no LICENSE file. The README is in Traditional Chinese only.
+caveat: The skills are the folders at the repository root, two so far. The repository has no LICENSE file. The README is in Traditional Chinese only.
 effectiveDate: 2026-11-21
 lastVerified: 2026-11-22
 sources:
@@ -27,7 +27,7 @@ sources:
 
 ## Skills
 
-| Skill | Description from its `SKILL.md` |
+| Skill | Description |
 | --- | --- |
 | `heii` | "Communicate clearly in plain language when explicitly invoked." |
 | `3d-textbook-lesson` | Written in Chinese. It turns one chapter of a textbook PDF into a 3D interactive textbook for a teacher to project in class: a static three.js web page that shows an open book whose figures rise from the page, each with a demonstration that plays by itself after one click. The engine it builds on is in the skill's `engine/` folder |
@@ -57,7 +57,7 @@ skill.md-collections/
 
 ## Use a skill
 
-The README gives no install command. Copy the skill folder you want into the directory where your agent loads skills, for example:
+Copy the skill folder you want into the directory where your agent loads skills, for example:
 
 ```bash
 git clone https://github.com/workingyuanyuan/skill.md-collections.git

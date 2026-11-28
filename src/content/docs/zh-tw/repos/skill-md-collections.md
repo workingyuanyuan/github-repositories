@@ -3,7 +3,7 @@ title: skill.md-collections
 description: 作者自己的 agent skill 收藏，每個 skill 一個資料夾，目前有 heii 與 3d-textbook-lesson 兩個。
 repo: workingyuanyuan/skill.md-collections
 appliesTo: main 分支的 commit 195e5f3。這個專案沒有任何已標記的發行版。
-caveat: README 只說明資料夾配置，沒有列出收錄的 skill；專案根目錄下的資料夾就是 skill，目前有兩個。專案沒有 LICENSE 檔案。README 只有繁體中文版。
+caveat: 專案根目錄下的資料夾就是 skill，目前有兩個。專案沒有 LICENSE 檔案。README 只有繁體中文版。
 effectiveDate: 2026-11-21
 lastVerified: 2026-11-22
 sources:
@@ -27,7 +27,7 @@ sources:
 
 ## Skills
 
-| Skill | 出自其 `SKILL.md` 的說明 |
+| Skill | 說明 |
 | --- | --- |
 | `heii` | 「在明確呼叫時，以平實清楚的語言溝通。」 |
 | `3d-textbook-lesson` | 把教科書 PDF 的一個章節做成教師上課投影用的 3D 互動課本：一個 three.js 靜態網頁，畫面是一本攤開的書，圖表從書頁上浮起，點一下就自動播完整段示範。它所用的引擎放在這個 skill 的 `engine/` 資料夾 |
@@ -57,7 +57,7 @@ skill.md-collections/
 
 ## 使用 skill
 
-README 沒有提供安裝指令。將所需的 skill 資料夾複製到 agent 載入 skill 的目錄即可，例如：
+將所需的 skill 資料夾複製到 agent 載入 skill 的目錄即可，例如：
 
 ```bash
 git clone https://github.com/workingyuanyuan/skill.md-collections.git

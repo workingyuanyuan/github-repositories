@@ -29,8 +29,7 @@ sources:
 
 ## Simple Gemini 的功能
 
-- 摘要網頁上選取的文字。
-- 摘要貼上或輸入至彈出視窗的文字。
+- 摘要網頁上選取的文字，或貼上、輸入至彈出視窗的文字。
 - 使用 Chrome 內建的 Gemini Nano 進行本機處理。
 - 或使用自備金鑰呼叫 Gemini API。
 
@@ -47,7 +46,7 @@ sources:
 5. 點擊左上角的載入未封裝項目。
 6. 選擇解壓縮後的資料夾（內含 `manifest.json` 的那一層）。
 
-套件直接連結：
+0.1.1 版的 ZIP 套件位於：
 
 ```text
 https://yuanaruru.com/simple-gemini-public/downloads/simple-gemini-0.1.1.zip

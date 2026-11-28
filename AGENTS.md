@@ -14,7 +14,7 @@ This site documents the public GitHub repositories of `workingyuanyuan`. It is s
 pnpm verify      # build, then run the acceptance checks. Run this before you call a change done.
 pnpm build       # build only
 pnpm check       # acceptance checks on an existing dist/
-node scripts/prose-review.mjs run      # after a build: a reader of another model reads prose not yet read; fix what it flags (reviews/prose-ledger.json)
+node scripts/prose-review.mjs run      # after a build: a reader (PROSE_READER) reads prose not yet read; fix what it flags (reviews/prose-ledger.json)
 node scripts/prose-review.mjs status   # count the units of prose not yet read
 pnpm upstream    # compare the repositories with what the pages were written from; upstream/README.md
 pnpm preview     # serve dist/ at http://127.0.0.1:4399/github-repositories/ with the same Content-Type headers as GitHub Pages
@@ -48,7 +48,7 @@ Run `pnpm upstream` and read `upstream/README.md` before you update a repository
 | Path | Role |
 | --- | --- |
 | `src/lib/site.mjs` | Site URL and sub-path, locales, URL rules for HTML pages and Markdown twins |
-| `src/lib/hast-base.mjs` | Puts the sub-path in front of root-relative links in the HTML |
+| `src/lib/hast-base.mjs` | Puts the sub-path in front of root-relative links in the HTML; gives footnotes a heading-free section labelled in the page's language |
 | `src/lib/page-md.mjs` | Builds each page's Markdown twin |
 | `src/pages/[...slug].md.ts` | Serves the Markdown twins (`/repos/kage/` -> `/repos/kage.md`) |
 | `src/pages/index.json.ts` | Machine-readable page list |

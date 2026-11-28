@@ -21,7 +21,7 @@ sources:
 | --- | --- |
 | 類型 | Codex 個人 skill，名稱為 `delegate` |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
-| 版本資料夾 | `gpt-6.2-astra`（給 GPT-6.2 Astra 主代理）與 `gpt-6-astra`（給 GPT-6 Astra 主代理） |
+| 版本資料夾 | `gpt-6.2-astra` 與 `gpt-6-astra` |
 | 發行版 | 無 |
 
 ## 檔案
@@ -53,14 +53,14 @@ gpt-6-astra/
 
 ## 安裝
 
-把你要用的版本底下的 `skills/delegate` 整個資料夾複製到個人 skill 目錄：`gpt-6.2-astra/skills/delegate` 或 `gpt-6-astra/skills/delegate`。下面的指令和 README 一樣以 `gpt-6-astra` 為例。
+把你要用的版本底下的 `skills/delegate` 整個資料夾複製到個人 skill 目錄：`gpt-6.2-astra/skills/delegate` 或 `gpt-6-astra/skills/delegate`。
 
 | 系統 | 個人 skill 目錄 |
 | --- | --- |
 | Windows | `%USERPROFILE%\.agents\skills` |
 | macOS 與 Linux | `~/.agents/skills` |
 
-在 Linux 上，於 clone 下來的專案目錄內執行：
+在 Linux 上，於 clone 下來的專案目錄內執行（`gpt-6-astra`）：
 
 ```bash
 mkdir -p ~/.agents/skills
@@ -84,7 +84,7 @@ cp -r gpt-6-astra/skills/delegate ~/.agents/skills/
 
 ## 確認已載入
 
-開啟新對話、選擇你那個版本的主代理，並確認 skill 選擇器中出現 `delegate`。如果沒有出現，請重開 Codex 並檢查資料夾層級與 `SKILL.md` 檔名，接著呼叫它。下面是 README 給 `gpt-6-astra` 的提示詞；用 `gpt-6.2-astra` 時，回答裡會是兩種配置：
+開啟新對話、選擇你那個版本的主代理，並確認 skill 選擇器中出現 `delegate`。如果沒有出現，請重開 Codex 並檢查資料夾層級與 `SKILL.md` 檔名，接著用這段提示詞呼叫它。用 `gpt-6.2-astra` 時，回答裡是兩種配置：
 
 ```text
 $delegate 請說明你讀取的 SKILL.md 路徑，以及三種子代理配置。

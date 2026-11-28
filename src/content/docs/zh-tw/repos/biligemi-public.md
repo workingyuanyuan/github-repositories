@@ -27,14 +27,12 @@ sources:
 
 ## BiliGemi 的功能
 
-| 功能 | README 與落地頁的說明 |
+| 功能 | 說明 |
 | --- | --- |
 | 影片摘要 | 一鍵產生 Bilibili 影片字幕的結構化大綱 |
 | 留言摘要 | 一鍵摘要熱門觀眾留言 |
 | 模型選擇 | Chrome 內建的 Gemini Nano，或搭配使用者自備金鑰的自訂 API 伺服器 |
-| 隱私保護 | 無中繼伺服器。API 金鑰存於本機，摘要請求直接送往 AI 供應商 |
-
-README 註明該軟體不會收集任何瀏覽紀錄或帳號資訊。
+| 隱私保護 | 無中繼伺服器。API 金鑰存於本機，摘要請求直接送往 AI 供應商。不收集瀏覽紀錄或帳號資訊 |
 
 ## 安裝
 
@@ -42,4 +40,4 @@ README 註明該軟體不會收集任何瀏覽紀錄或帳號資訊。
 
 ## 聯絡方式
 
-README 列出 GitHub 個人檔案 <https://github.com/workingyuanyuan> 作為建議與提問管道。
+建議與提問請到 GitHub 個人檔案 <https://github.com/workingyuanyuan>。

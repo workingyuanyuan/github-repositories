@@ -18,7 +18,7 @@ sources:
 | Kind | Static web page in plain JavaScript, started by a Windows batch file that runs a small local web server |
 | Name in the interface | 貓咪小鎮, "Kitten Town" |
 | Hosted copy | <https://yuanaruru.com/Pixel-Kitten-Town-Class/> |
-| License | No LICENSE file. GitHub detects no license. The README calls it a non-commercial teaching tool |
+| License | No LICENSE file. GitHub detects no license. Made as a non-commercial teaching tool |
 | Requires | Chrome or Edge. The launcher `啟動.bat` is a Windows batch file and needs Python on PATH |
 | Port | 8173 by default. If taken, it tries higher ports up to 8200 |
 | Data | JSON files in the `data` folder, one file per class |

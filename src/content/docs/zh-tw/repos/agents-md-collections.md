@@ -15,7 +15,6 @@ sources:
 
 | 欄位 | 內容 |
 | --- | --- |
-| 類型 | 附帶設計筆記的 `AGENTS.md` 檔案合集 |
 | 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權 |
 | 收錄模型 | 1 個：`gpt-6-astra`，紀錄狀態為「Output Discipline」 |
 | 發行版 | 無 |
@@ -43,7 +42,7 @@ sources:
 
 ## 使用檔案
 
-把你所用模型的 `AGENTS.md` 複製到 agent 讀取的位置。以 `gpt-6-astra` 為例：
+把你所用模型的 `AGENTS.md` 複製到 agent 讀取的位置。用 `gpt-6-astra` 時：
 
 ```bash
 git clone https://github.com/workingyuanyuan/agents.md-collections.git

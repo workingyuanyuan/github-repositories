@@ -21,7 +21,6 @@ sources:
 
 | Field | Value |
 | --- | --- |
-| Kind | Obsidian theme, listed in the community themes as `Kage` |
 | License | MIT |
 | Latest release | 1.0.4, published 2026-08-09 |
 | Release files | `manifest.json`, `theme.css` |

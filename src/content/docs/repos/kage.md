@@ -3,7 +3,7 @@ title: Kage
 description: Agent skill that typesets a brief into a dark, screen-only HTML document.
 repo: workingyuanyuan/Kage
 appliesTo: Commit d5fb072 on branch main. The repository has no tagged release.
-caveat: Output is HTML for screens only. SKILL.md says native Office files, PDF and light designs need a different deliverable. Screenshot and pixel checks need Chrome or Edge.
+caveat: Output is HTML for screens only; native Office files, PDF and light designs need a different deliverable. Screenshot and pixel checks need Chrome or Edge.
 effectiveDate: 2026-09-12
 lastVerified: 2026-11-18
 sources:
@@ -34,7 +34,7 @@ sources:
 git clone https://github.com/workingyuanyuan/Kage.git
 ```
 
-Then move the cloned directory into the skill path of your agent. The agent reads `SKILL.md` first and opens the other specs and templates as it needs them. The README does not name a specific skill path.
+Then move the cloned directory into the skill path of your agent. The agent reads `SKILL.md` first and opens the other specs and templates as it needs them.
 
 If Chrome or Edge is not found automatically, set the environment variable `KAGE_CHROME` to the browser executable.
 
@@ -60,7 +60,7 @@ Turn these meeting notes into a one-pager for my manager
 
 ## Check commands
 
-The README lists these commands. Their scope is documented in `references/production.md` in the repository.
+The scope of each command is documented in `references/production.md` in the repository.
 
 ```bash
 node scripts/kage.mjs check
@@ -84,7 +84,7 @@ node scripts/kage.mjs bg <background.png>
 - Every company, person and figure in the demo documents is invented.
 - When required material is missing, the working document marks it as `[需要資料：…]`.
 - The second tone mode, "develop", is used only when asked for by name.
-- The README credits [Kami](https://github.com/tw93/kami) by tw93 for the architecture: shipping document typesetting as an agent skill.
+- The architecture follows [Kami](https://github.com/tw93/kami) by tw93: shipping document typesetting as an agent skill.
 
 ## Related
 

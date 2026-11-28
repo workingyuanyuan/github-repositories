@@ -55,7 +55,7 @@ The skill writes the slide copy first. Review it and approve it explicitly. Prev
 
 ## Install
 
-The README gives no install command. The repository is a skill folder with `SKILL.md` at its root, so place a clone of it where your agent loads skills:
+The repository is a skill folder with `SKILL.md` at its root, so place a clone of it where your agent loads skills:
 
 ```bash
 git clone https://github.com/workingyuanyuan/instagram-linkedin-carousel-skill.git
@@ -63,4 +63,4 @@ git clone https://github.com/workingyuanyuan/instagram-linkedin-carousel-skill.g
 
 ## Attribution
 
-The README thanks coreyhaines31 and says the narrative framework is informed by `marketingskills/skills/social/references` in <https://github.com/coreyhaines31/marketingskills>.
+The narrative framework draws on `marketingskills/skills/social/references` in <https://github.com/coreyhaines31/marketingskills> by coreyhaines31.

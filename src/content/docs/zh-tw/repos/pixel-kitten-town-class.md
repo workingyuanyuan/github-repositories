@@ -18,7 +18,7 @@ sources:
 | 類型 | 純 JavaScript 靜態網頁，由執行小型本機網頁伺服器的 Windows 批次檔啟動 |
 | 介面名稱 | 貓咪小鎮 |
 | 線上託管版本 | <https://yuanaruru.com/Pixel-Kitten-Town-Class/> |
-| 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權。README 稱其為非商業教學工具 |
+| 授權 | 沒有 LICENSE 檔案，GitHub 未偵測到授權。定位為非商業教學工具 |
 | 需求 | Chrome 或 Edge。啟動器 `啟動.bat` 為 Windows 批次檔，需要 PATH 中有 Python |
 | 連接埠 | 預設 8173；若被佔用會往上嘗試至 8200 |
 | 資料 | 位於 `data` 資料夾的 JSON 檔案，每個班級一個檔案 |
